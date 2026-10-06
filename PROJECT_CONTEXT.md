@@ -1,0 +1,64 @@
+# xSim website: project context
+
+Read this first in any new chat about the xsim.dev site. Upload it to the Claude Project as project knowledge.
+
+## What this is
+
+B2B marketing and lead-generation site for **xSim**, simulation-based executive development (the venture previously called EDGE / EDGE Team Dynamics). Market: Israel-based companies and Israeli-led leadership teams. Founders: Jeremy Stein (simulation architect, lead facilitator) and Larry (GTM, commercial). Founders are deliberately **not named** on the site yet.
+
+**Goal of the site:** give senior buyers (CEO, CHRO/VP HR, Chief of Staff) high-quality, high-level information, then convert them into a **briefing request**: a sales meeting where the client pitch deck is presented. The site is not the pitch itself.
+
+## Decisions made (Oct 2026)
+
+- Hosting: Cloudflare Workers with static assets, D1 for leads, Email Routing for notifications, Turnstile on every form. All free tier. Vercel rejected: Hobby plan is non-commercial only.
+- No framework, no build dependencies: `build.mjs` renders `src/templates.mjs` with copy from `src/content/en.json` and `src/content/he.json`.
+- Bilingual from launch: English at `/`, Hebrew (RTL) at `/he/`. Hebrew uses plural address (אתם).
+- No pricing on the site. Pricing is discussed in the sales meeting.
+- Engagement model on the site: **Calibrate → Simulate → Integrate**. The CEO discovery interview (60 to 90 min) and the Executive Team Pulse (confidential survey) are **required** parts of Calibrate once a client is engaged. The Simulation Summit is half-day or full-day.
+- Six capabilities (from the xSim Curriculum Overview): Information, Decision, Adapt, Align, Lead, Customer, with **Execute** as the thread through all six.
+- Lead form fields: name, work email, company, role, team size, preferred meeting language, phone, message, consent. Honeypot + Turnstile + server-side validation.
+
+## Visual identity (proposed, not yet approved)
+
+- Wordmark: "xSim" with the x drawn as two strokes, one deliberately broken (the signal that gets lost). Favicon uses the same x.
+- Palette: ink `#0E1726`, paper `#F5F2EB`, paper-2 `#ECE7DC`, signal orange `#B9471A` (on light) / `#F08A4B` (on dark), slate `#4F5A6A`. All text pairs pass WCAG AA.
+- Type: IBM Plex Sans + IBM Plex Sans Hebrew (one family, self-hosted, SIL OFL), IBM Plex Mono for small labels.
+- Hero graphic: six capability nodes around an EXECUTE core; one link drawn broken in orange.
+
+## House style rules (carry over from the pitch deck work)
+
+- **No em dashes** anywhere in prepared content. `npm run build` warns if one appears in the content files.
+- Prose over bullets; no salesy language; strict accuracy, no unverified statistics or invented claims.
+- Never use "observe" for what happens to participants (reads as surveillance). Use "surfaces", "illuminate".
+- Never use "mort"-rooted words. "Stress test", not "pre-mortem".
+- Positive framing, not pain-point framing, for a senior audience.
+- Do not claim that Israeli companies undervalue customers.
+- Calibration starts once the client gives the go-ahead.
+- Operator credibility figure: **"50+ years combined"** (as in Draft4 of the client deck, Sept 29 2026; earlier drafts said 75+).
+
+## Open items for Larry and Jeremy
+
+1. Native review of all Hebrew copy (`src/content/he.json`).
+2. Confirm the Integrate deliverables shown on the site: CEO report and 90-day check-ins (Jeremy noted the full diagnostic is "a real commitment").
+3. Confirm it is fine to name four simulations publicly (The $100M Decision, Customer Rescue, Blind Builder, The Perfect Meeting).
+4. Privacy policy is a draft: the 24-month retention period is a placeholder and the whole page needs legal review against the Israeli Privacy Protection Law.
+5. Who receives lead notifications (currently larry@shertz.com only) and who answers hello@xsim.dev.
+6. Approve or replace the proposed wordmark and palette.
+7. Possible later additions: booking link (e.g. Cal.com) on the thank-you page, case studies after the alpha pilots, the Executive Team Pulse as an online form (would also use Turnstile).
+
+## File map
+
+```
+src/content/site.json   domain, contact email, Turnstile site key
+src/content/en.json     all English copy
+src/content/he.json     all Hebrew copy
+src/templates.mjs       page HTML
+src/worker.js           POST /api/lead (Turnstile, D1, email)
+site/static/            CSS, JS, fonts, images, _headers, robots.txt
+migrations/             D1 schema
+build.mjs               builds ./public
+wrangler.jsonc          Cloudflare config (routes, D1, email, vars)
+DEPLOY.md               setup and deployment steps
+```
+
+Source material lives in the ExecutiveTraining folder: `SharedGDriveMirror/Simulations/xSim Curiculum Overview.docx`, `SharedGDriveMirror/JDS Misc/xSim Survey Discussion and Business Offering.docx`, `SharedGDriveMirror/Sales/EDGE_Client_Pitch_Deck_Draft4.pptx`, and the facilitator kits.

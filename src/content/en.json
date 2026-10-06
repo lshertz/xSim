@@ -1,0 +1,229 @@
+{
+  "lang": "en",
+  "dir": "ltr",
+  "otherLang": { "code": "he", "label": "עברית", "aria": "קראו את האתר בעברית" },
+  "meta": {
+    "title": "xSim | Simulation-based executive development",
+    "description": "Business simulations that reveal how decisions, information and accountability move through your leadership team, followed by a practical 90-day plan. Built and led by operators, in Hebrew or English.",
+    "ogAlt": "xSim: simulation-based executive development"
+  },
+  "nav": {
+    "skip": "Skip to content",
+    "approach": "Approach",
+    "capabilities": "Capabilities",
+    "engagement": "Engagement",
+    "faq": "FAQ",
+    "cta": "Request a briefing",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "hero": {
+    "eyebrow": "Simulation-based executive development",
+    "title": "See how your leadership team really operates. Then make it better.",
+    "lead": "High-impact business simulations reveal how decisions, information, and accountability move through your organization. Then we show you where to optimize it.",
+    "ctaPrimary": "Request a briefing",
+    "ctaSecondary": "How an engagement works",
+    "note": "Built and led by operators, not trainers.",
+    "diagramTitle": "The six capabilities xSim works on, connected by execution",
+    "diagramCenter": "EXECUTE"
+  },
+  "problem": {
+    "eyebrow": "The problem",
+    "title": "Strategy, tactics, execution.",
+    "intro": "Three different disciplines that are often discussed as one. Most leadership teams invest heavily in the first two.",
+    "items": [
+      { "label": "Strategy", "text": "Where to compete and how to win there. Multi-year, hard to reverse." },
+      { "label": "Tactics", "text": "The specific, reversible moves inside that choice: a deal, a campaign, a hire." },
+      { "label": "Execution", "text": "The daily discipline that makes tactics stick: process, systems, people delivering." }
+    ],
+    "closing": "xSim lives in execution: the daily discipline that decides whether strategy and tactics turn into real results."
+  },
+  "approach": {
+    "eyebrow": "Approach",
+    "title": "We don't hand you more tactics. We show you where the current ones break.",
+    "body": [
+      "A live simulation places the team, with its real dynamics, in a compressed, high-stakes decision environment.",
+      "What surfaces there (who gets heard, what information goes missing, where priorities collide) is the same pattern already running in your business, just visible in hours instead of quarters."
+    ],
+    "pillars": [
+      { "k": "Simulate", "title": "Simulate complexity", "text": "Teams decide under real trade-offs, incomplete information and competing priorities." },
+      { "k": "Illuminate", "title": "Illuminate patterns", "text": "The exercise itself surfaces how information moves, where decisions bottleneck, and where hidden strengths already exist." },
+      { "k": "Activate", "title": "Activate insight", "text": "The debrief becomes a stress test and a working 90-day roadmap, not just a memory." }
+    ],
+    "footnote": "Boardroom-based. Reality-led. No travel, no outdoor production, no physical risk."
+  },
+  "capabilities": {
+    "eyebrow": "Capabilities",
+    "title": "Six capabilities every leadership team depends on.",
+    "intro": "We don't assess individuals. We look at how the team operates together across six capabilities, with execution running through all of them.",
+    "items": [
+      { "n": "01", "k": "Information", "title": "Communication & Information Flow", "q": "Are the right people getting the right information, at the right time, in a form they can act on?" },
+      { "n": "02", "k": "Decision", "title": "Decision-Making Under Constraints", "q": "Can the team make high-quality decisions when time, money, information and people are limited?" },
+      { "n": "03", "k": "Adapt", "title": "Adaptability, Risk & Response", "q": "Can the team recognize change and respond before it becomes a crisis?" },
+      { "n": "04", "k": "Align", "title": "Cross-Functional Alignment & Collaboration", "q": "Can functions with different goals and incentives work toward one outcome?" },
+      { "n": "05", "k": "Lead", "title": "Leadership, Delegation & Accountability", "q": "Can leadership capacity scale beyond the people at the top?" },
+      { "n": "06", "k": "Customer", "title": "Customer-Centric Value Creation", "q": "Do our decisions actually create value for the people we serve?" }
+    ],
+    "execute": { "k": "Execute", "text": "Turning decisions into action, ownership and results. The thread that runs through all six." }
+  },
+  "engagement": {
+    "eyebrow": "Engagement",
+    "title": "How an engagement works.",
+    "intro": "Every engagement is built around your team and starts with calibration, because a simulation is only as useful as the questions it is designed to test.",
+    "phases": [
+      {
+        "n": "01",
+        "k": "Calibrate",
+        "when": "Once you give the go-ahead",
+        "points": [
+          "CEO discovery interview: a private 60 to 90 minute conversation about the business context, the team, and what meaningful improvement would look like.",
+          "Executive Team Pulse: a confidential questionnaire of 10 to 15 minutes, completed by each member of the leadership team and separately by the CEO.",
+          "Together they point to the one to four capabilities with the most leverage for your business right now."
+        ]
+      },
+      {
+        "n": "02",
+        "k": "Simulate",
+        "when": "The Simulation Summit",
+        "points": [
+          "A half-day or full-day session with a sequence of simulations designed around your priorities.",
+          "Each simulation moves closer to your real environment, so by the last one the team is no longer thinking about a game.",
+          "Every debrief comes back to one question: where does this happen in our company?",
+          "The day closes with a stress test of current plans and a 90-day roadmap with named owners."
+        ]
+      },
+      {
+        "n": "03",
+        "k": "Integrate",
+        "when": "After the room",
+        "points": [
+          "A concise report for the CEO: what the team told us, what surfaced in the simulations, where perception and behavior diverge, and the highest-priority opportunities.",
+          "Check-ins against the 90-day roadmap, so the lessons become habits rather than the memory of a good day."
+        ]
+      }
+    ]
+  },
+  "simulations": {
+    "eyebrow": "Inside a simulation",
+    "title": "Business problems, under pressure, with no easy answer.",
+    "intro": "Low-prop, business-first exercises built from real operating situations. Paper, markers, a timer, and a decision that matters.",
+    "items": [
+      { "name": "The $100M Decision", "cap": "Decision-making under constraints", "text": "One major investment, one choice, and the board will not approve splitting the money. The team must agree on criteria, assumptions, risk and opportunity cost before time runs out." },
+      { "name": "Customer Rescue", "cap": "Customer-centric value creation", "text": "A major account threatens to leave after a service failure. Sales, product, engineering, finance and customer success each have a legitimate view, and the team has one decision to make." },
+      { "name": "Blind Builder", "cap": "Communication & information flow", "text": "One person can see the target design. Another handles the materials. Everyone else has to make information move. It rarely moves the way people expect." },
+      { "name": "The Perfect Meeting", "cap": "Execution & accountability", "text": "An unexpected opportunity, a leadership meeting and confidential role briefs. Does the meeting end with a decision, owners and deadlines, or with another meeting?" }
+    ],
+    "note": "Most simulations run 60 to 75 minutes including the debrief and are designed for leadership teams of about 5 to 15 people."
+  },
+  "operators": {
+    "eyebrow": "Why xSim",
+    "title": "Built by operators, not instructors.",
+    "body": "Many facilitators are former fighter pilots, career trainers or academics. Valuable perspectives, but mostly from outside the organizations they work with. We have run them.",
+    "stat": "50+",
+    "statLabel": "years of combined operating experience",
+    "statText": "Operating P&Ls, integrating mergers, rebuilding service floors and leading AI transformations, under real deadlines with real consequences.",
+    "closing": "The simulations aren't borrowed case studies. They're built from what actually broke, and how it got fixed.",
+    "bilingual": "Delivered in Hebrew, English, or both."
+  },
+  "trust": {
+    "eyebrow": "Confidentiality",
+    "title": "Candor depends on trust.",
+    "points": [
+      "Individual Pulse responses are never shown to the CEO or to other participants.",
+      "Findings are reported as team-level themes and aggregates.",
+      "Where a group is too small to protect anonymity, it is not reported separately.",
+      "The purpose is to understand how the team operates, not to evaluate individual executives."
+    ]
+  },
+  "models": {
+    "eyebrow": "Working together",
+    "title": "Two ways to work with us.",
+    "items": [
+      { "title": "Single engagement", "sub": "Half-day or full-day", "text": "Calibration, a Simulation Summit tailored to your priorities, and a 90-day roadmap you leave with." },
+      { "title": "Ongoing partnership", "sub": "Built around your calendar", "text": "Quarterly alignment and simulation sessions, executive coaching and onboarding integration, and facilitation when a crisis hits." }
+    ],
+    "costTitle": "What waiting costs",
+    "cost": "Weekly C-suite hours lost to alignment meetings. One executive exit and rehire. One lost client or missed SLA. Think about what an ineffective quarterly review already costs you."
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Questions leadership teams ask.",
+    "items": [
+      { "q": "Is this team-building?", "a": "No. There are no ropes, no outdoor production and no trust falls. The exercises are business problems under pressure, and every debrief ends in decisions about how your team operates." },
+      { "q": "Where does it take place?", "a": "In your boardroom, an off-site meeting room or a hotel conference room. Setup is minimal." },
+      { "q": "In which language?", "a": "Hebrew, English, or a mix of both, depending on your team." },
+      { "q": "Who should take part?", "a": "The leadership team that makes decisions together, typically the CEO and direct reports. Most simulations are designed for about 5 to 15 participants." },
+      { "q": "How much of the CEO's time does it take?", "a": "A 60 to 90 minute discovery interview, completing the Pulse, the Simulation Summit itself, and a review of the findings afterward." },
+      { "q": "Are individual executives evaluated?", "a": "No. Pulse responses are confidential and reported only as team-level themes. We look at how the team works together, not at individual performance." },
+      { "q": "What does it cost?", "a": "It depends on scope: the size of the team, the length of the session and whether you want ongoing support. After an initial conversation we send a clear proposal." },
+      { "q": "How do we start?", "a": "Request a briefing below. We will arrange a short conversation to understand your situation and show you how an engagement would work for your team." }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Next step",
+    "title": "Request a briefing.",
+    "intro": "Tell us a little about your team. We will reply personally to arrange a conversation.",
+    "altEmail": "Prefer email? Write to",
+    "fields": {
+      "name": "Full name",
+      "email": "Work email",
+      "company": "Company",
+      "role": "Your role",
+      "teamSize": "Leadership team size",
+      "teamSizeOptions": { "": "Select", "lt6": "Fewer than 6", "6-10": "6 to 10", "11-15": "11 to 15", "16plus": "16 or more" },
+      "prefLanguage": "Preferred meeting language",
+      "prefLanguageOptions": { "en": "English", "he": "Hebrew" },
+      "phone": "Phone",
+      "message": "What prompted you to reach out?",
+      "messageHint": "Optional. A sentence or two is plenty.",
+      "optional": "optional",
+      "consentPre": "I agree that xSim may use these details to contact me about this request, as described in the ",
+      "consentLink": "privacy policy",
+      "honeypot": "Leave this field empty"
+    },
+    "submit": "Send request",
+    "sending": "Sending…",
+    "success": "Thank you. Your request has been received and we will be in touch shortly to arrange a time.",
+    "errors": {
+      "required": "Please complete the highlighted fields.",
+      "email": "Please enter a valid email address.",
+      "consent": "Please confirm you agree to be contacted.",
+      "verification": "We could not verify the request. Please wait a moment and try again.",
+      "server": "Something went wrong on our side. Please try again, or email us directly at"
+    }
+  },
+  "footer": {
+    "tagline": "Simulation-based executive development.",
+    "privacy": "Privacy",
+    "rights": "All rights reserved."
+  },
+  "thanks": {
+    "title": "Thank you.",
+    "body": "Your request has been received. We will reply personally to arrange a conversation.",
+    "back": "Back to the home page"
+  },
+  "contactError": {
+    "title": "We couldn't send your request.",
+    "body": "Please go back and try again, or email us directly at",
+    "back": "Back to the form"
+  },
+  "notFound": {
+    "title": "Page not found.",
+    "body": "The page you are looking for doesn't exist or has moved.",
+    "back": "Go to the home page"
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "updated": "Last updated: October 2026",
+    "sections": [
+      { "h": "Who we are", "p": ["xSim provides simulation-based executive development. This policy explains what personal information this website collects and how it is used. For any privacy question, contact us at {email}."] },
+      { "h": "What we collect", "p": ["When you request a briefing we collect the details you enter: your name, work email, company, role, and optionally your phone number, leadership team size, preferred meeting language and message. We also record the date of the request, the language of the page you used and the country your request came from. We do not store your IP address."] },
+      { "h": "Why we collect it", "p": ["We use these details only to respond to your request, arrange a conversation, and keep a record of our correspondence with you. We do not sell your information or use it for unrelated marketing."] },
+      { "h": "Spam protection", "p": ["Our form is protected by Cloudflare Turnstile, which checks that a request comes from a person rather than an automated script. Turnstile processes limited technical signals from your browser for this purpose. See Cloudflare's privacy policy for details."] },
+      { "h": "Cookies and analytics", "p": ["This website does not use advertising or tracking cookies. If we enable privacy-focused, cookieless traffic statistics, they record only aggregate page views."] },
+      { "h": "Where it is stored", "p": ["The website and form submissions are hosted on Cloudflare's infrastructure. A notification of each request is sent to our business email. Access is limited to the xSim founders."] },
+      { "h": "How long we keep it", "p": ["We keep briefing requests for as long as needed to respond and to maintain a business relationship, and delete requests that do not lead to further contact within 24 months."] },
+      { "h": "Your rights", "p": ["You may ask to see, correct or delete the personal information we hold about you by writing to {email}. We will respond within a reasonable time and in line with applicable law, including the Israeli Privacy Protection Law."] }
+    ]
+  }
+}

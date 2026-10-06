@@ -1,0 +1,22 @@
+{
+  "name": "xsim-website",
+  "version": "1.0.0",
+  "description": "xsim.dev marketing and lead-generation site (Cloudflare Workers + static assets)",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs && wrangler dev",
+    "deploy": "node build.mjs && wrangler deploy",
+    "db:migrate:local": "wrangler d1 migrations apply xsim-leads --local",
+    "db:migrate": "wrangler d1 migrations apply xsim-leads --remote",
+    "leads": "wrangler d1 execute xsim-leads --remote --command \"SELECT created_at, name, role, company, email, phone, team_size, pref_language, status FROM leads ORDER BY created_at DESC LIMIT 50\""
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/ibm-plex-sans": "^5.3.0",
+    "@fontsource/ibm-plex-sans-hebrew": "^5.3.0",
+    "wrangler": "^4.147.0"
+  },
+  "private": true,
+  "type": "module"
+}

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /thanks/
+Disallow: /he/thanks/
+Disallow: /contact-error/
+Disallow: /he/contact-error/
+
+Sitemap: https://xsim.dev/sitemap.xml

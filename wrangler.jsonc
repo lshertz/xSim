@@ -1,0 +1,56 @@
+// Cloudflare Worker configuration for xsim.dev
+// Docs: https://developers.cloudflare.com/workers/wrangler/configuration/
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "xsim-website",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": true,
+
+  // Static site built by `npm run build` into ./public
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+    // Only the API runs through Worker code; every page is served as a free static asset.
+    "run_worker_first": ["/api/*"]
+  },
+
+  // Serve the site on the apex domain and www (DNS is already on Cloudflare).
+  // Comment these out for a first test deploy on *.workers.dev.
+  "routes": [
+    { "pattern": "xsim.dev", "custom_domain": true },
+    { "pattern": "www.xsim.dev", "custom_domain": true }
+  ],
+
+  // Lead storage. Create with: npx wrangler d1 create xsim-leads
+  // then paste the database_id it prints below.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "xsim-leads",
+      "database_id": "REPLACE_WITH_DATABASE_ID",
+      "migrations_dir": "migrations"
+    }
+  ],
+
+  // Lead notification email. Sending to a *verified* Email Routing destination
+  // address is free on all plans.
+  "send_email": [{ "name": "EMAIL", "allowed_destination_addresses": ["larry@shertz.com"] }],
+
+  "vars": {
+    // Public Turnstile site key is set in src/content/site.json (it is public by design).
+    // Where lead notifications go. Must be a verified destination in Email Routing.
+    "NOTIFY_TO": "larry@shertz.com",
+    // Sender. Must be on a domain onboarded to Cloudflare Email (xsim.dev).
+    "NOTIFY_FROM": "leads@xsim.dev",
+    // Hostnames allowed to submit the form (Origin + Turnstile hostname check).
+    // Local dev adds localhost via .dev.vars. Add the workers.dev hostname here if you test there.
+    "ALLOWED_HOSTS": "xsim.dev,www.xsim.dev"
+  },
+
+  // Secret (never commit): npx wrangler secret put TURNSTILE_SECRET_KEY
+
+  "observability": { "enabled": true }
+}
