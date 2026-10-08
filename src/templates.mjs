@@ -14,10 +14,18 @@ const otherBase = (t) => (t.lang === "he" ? "/" : "/he/");
 
 // ---------- Brand marks ----------
 
-export function wordmark() {
-  // Typographic wordmark: an "x" built from two strokes (one deliberately broken:
-  // the signal that gets lost), followed by "Sim".
-  return `<span class="wordmark" aria-label="xSim"><svg class="wordmark__x" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4 L20 20" /><path d="M20 4 L14.2 9.8 M9.8 14.2 L4 20" /></svg><span class="wordmark__sim" aria-hidden="true">Sim</span></span>`;
+// Brand logo: the hand-written "xSim" on a yellow sticky note (source files in
+// SharedGDriveMirror/Graphics/logo; web sizes in site/static/assets/img/logo).
+// Natural aspect ratio of the trimmed note is 1290 x 1155.
+export function logo(size = "sm") {
+  const h = size === "lg" ? 72 : 58;
+  const w = Math.round((h * 1290) / 1155);
+  return `<img class="logo logo--${size}" src="/assets/img/logo/note-yellow-96.webp" srcset="/assets/img/logo/note-yellow-96.webp 96w, /assets/img/logo/note-yellow-192.webp 192w" sizes="${w}px" width="${w}" height="${h}" alt="xSim">`;
+}
+
+// A colored logo note for the small utility pages (thank-you, error, 404).
+function pageNote(color) {
+  return `<img class="page-note" src="/assets/img/logo/note-${color}-240.webp" srcset="/assets/img/logo/note-${color}-240.webp 240w, /assets/img/logo/note-${color}-480.webp 480w" sizes="140px" width="140" height="140" alt="" aria-hidden="true">`;
 }
 
 function capabilityDiagram(t) {
@@ -88,8 +96,9 @@ ${noindex ? '<meta name="robots" content="noindex">' : ""}
 <meta property="og:image:alt" content="${esc(t.meta.ogAlt)}">
 <meta property="og:locale" content="${t.lang === "he" ? "he_IL" : "en_US"}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0E1726">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0B1A36">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/${t.lang === "he" ? "ibm-plex-sans-hebrew-hebrew-400-normal" : "ibm-plex-sans-latin-400-normal"}.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css?v=${site.buildId}">
@@ -99,7 +108,7 @@ ${noindex ? '<meta name="robots" content="noindex">' : ""}
 <a class="skip" href="#main">${esc(t.nav.skip)}</a>
 <header class="topbar" data-topbar>
   <div class="wrap topbar__inner">
-    <a class="topbar__brand" href="${base(t)}">${wordmark()}</a>
+    <a class="topbar__brand" href="${base(t)}">${logo("sm")}</a>
     <nav class="topbar__nav" id="site-nav" aria-label="Main">
       <a href="${base(t)}#approach">${esc(t.nav.approach)}</a>
       <a href="${base(t)}#capabilities">${esc(t.nav.capabilities)}</a>
@@ -120,7 +129,7 @@ ${body}
 <footer class="footer">
   <div class="wrap footer__inner">
     <div>
-      <a class="footer__brand" href="${base(t)}">${wordmark()}</a>
+      <a class="footer__brand" href="${base(t)}">${logo("lg")}</a>
       <p class="footer__tag">${esc(t.footer.tagline)}</p>
     </div>
     <nav class="footer__links" aria-label="Footer">
@@ -152,6 +161,7 @@ export function home(t, site) {
     <div class="hero__copy">
       <p class="eyebrow">${esc(t.hero.eyebrow)}</p>
       <h1 class="hero__title">${esc(t.hero.title)}</h1>
+      <svg class="brush" viewBox="0 0 300 24" aria-hidden="true" focusable="false"><path d="M4 19 C 70 8, 160 4, 296 6" /><path class="brush__thin" d="M60 15 C 130 9, 200 7, 280 9" /></svg>
       <p class="hero__lead">${esc(t.hero.lead)}</p>
       <div class="hero__ctas">
         <a class="btn btn--primary" href="#contact">${esc(t.hero.ctaPrimary)}</a>
@@ -232,7 +242,7 @@ export function home(t, site) {
     <ol class="phases">
       ${t.engagement.phases
         .map(
-          (p) => `<li class="phase">
+          (p, i) => `<li class="phase phase--${["yellow", "blue", "green"][i % 3]}">
         <div class="phase__head"><span class="phase__n">${esc(p.n)}</span><h3>${esc(p.k)}</h3><p class="phase__when">${esc(p.when)}</p></div>
         <ul class="phase__points">${p.points.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
       </li>`
@@ -252,7 +262,7 @@ export function home(t, site) {
     <ul class="sims">
       ${t.simulations.items
         .map(
-          (s) => `<li class="sim"><p class="sim__cap">${esc(s.cap)}</p><h3>${esc(s.name)}</h3><p>${esc(s.text)}</p></li>`
+          (s, i) => `<li class="sim sim--${["orange", "pink", "blue", "green"][i % 4]}"><p class="sim__cap">${esc(s.cap)}</p><h3>${esc(s.name)}</h3><p>${esc(s.text)}</p></li>`
         )
         .join("")}
     </ul>
@@ -340,7 +350,7 @@ export function home(t, site) {
       </div>
       <div class="cf-turnstile" data-sitekey="${esc(site.turnstileSiteKey)}" data-action="lead" data-language="${t.lang}" data-theme="light" data-size="flexible"></div>
       <div class="form__actions">
-        <button class="btn btn--primary" type="submit">${esc(c.submit)}</button>
+        <button class="btn btn--primary btn--note" type="submit">${esc(c.submit)}</button>
         <p class="form__status" role="status" aria-live="polite" data-status></p>
       </div>
     </form>
@@ -367,7 +377,7 @@ export function thanks(t, site) {
   return simple(t, site, {
     path: base(t) + "thanks/",
     title: t.thanks.title,
-    body: `<h1>${esc(t.thanks.title)}</h1><p class="lead">${esc(t.thanks.body)}</p><p><a class="btn btn--ghost" href="${base(t)}">${esc(t.thanks.back)}</a></p>`,
+    body: `${pageNote("green")}<h1>${esc(t.thanks.title)}</h1><p class="lead">${esc(t.thanks.body)}</p><p><a class="btn btn--ghost" href="${base(t)}">${esc(t.thanks.back)}</a></p>`,
   });
 }
 
@@ -375,7 +385,7 @@ export function contactError(t, site) {
   return simple(t, site, {
     path: base(t) + "contact-error/",
     title: t.contactError.title,
-    body: `<h1>${esc(t.contactError.title)}</h1><p class="lead">${esc(t.contactError.body)} <a href="mailto:${esc(site.contactEmail)}" dir="ltr">${esc(site.contactEmail)}</a>.</p><p><a class="btn btn--ghost" href="${base(t)}#contact">${esc(t.contactError.back)}</a></p>`,
+    body: `${pageNote("orange")}<h1>${esc(t.contactError.title)}</h1><p class="lead">${esc(t.contactError.body)} <a href="mailto:${esc(site.contactEmail)}" dir="ltr">${esc(site.contactEmail)}</a>.</p><p><a class="btn btn--ghost" href="${base(t)}#contact">${esc(t.contactError.back)}</a></p>`,
   });
 }
 
@@ -383,7 +393,7 @@ export function notFound(t, site) {
   return simple(t, site, {
     path: base(t) + "404",
     title: t.notFound.title,
-    body: `<h1>${esc(t.notFound.title)}</h1><p class="lead">${esc(t.notFound.body)}</p><p><a class="btn btn--ghost" href="${base(t)}">${esc(t.notFound.back)}</a></p>`,
+    body: `${pageNote("pink")}<h1>${esc(t.notFound.title)}</h1><p class="lead">${esc(t.notFound.body)}</p><p><a class="btn btn--ghost" href="${base(t)}">${esc(t.notFound.back)}</a></p>`,
   });
 }
 

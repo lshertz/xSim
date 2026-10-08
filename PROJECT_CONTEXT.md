@@ -22,12 +22,13 @@ B2B marketing and lead-generation site for **xSim**, simulation-based executive 
 - Six capabilities (from the xSim Curriculum Overview): Information, Decision, Adapt, Align, Lead, Customer, with **Execute** as the thread through all six.
 - Lead form fields: name, work email, company, role, team size, preferred meeting language, phone, message, consent. Honeypot + Turnstile + server-side validation.
 
-## Visual identity (proposed, not yet approved)
+## Visual identity
 
-- Wordmark: "xSim" with the x drawn as two strokes, one deliberately broken (the signal that gets lost). Favicon uses the same x.
-- Palette: ink `#0E1726`, paper `#F5F2EB`, paper-2 `#ECE7DC`, signal orange `#B9471A` (on light) / `#F08A4B` (on dark), slate `#4F5A6A`. All text pairs pass WCAG AA.
-- Type: IBM Plex Sans + IBM Plex Sans Hebrew (one family, self-hosted, SIL OFL), IBM Plex Mono for small labels.
-- Hero graphic: six capability nodes around an EXECUTE core; one link drawn broken in orange.
+- **Logo:** hand-written "xSim" in navy on a yellow sticky note (base logo), with blue, green, orange and pink variants. Masters: `SharedGDriveMirror/Graphics/logo/` in the ExecutiveTraining folder. Web sizes (WebP, trimmed) in `site/static/assets/img/logo/`. Aspect ratio of the trimmed yellow note: 1290 x 1155.
+- **Where it is used:** header and footer (yellow), favicon and apple-touch icon (yellow), social preview images (yellow on navy), utility pages use the variants (thank-you green, error orange, 404 pink).
+- **Palette:** ink `#0B1A36` (matches the logo's navy; also used for labels, bullets, numbers and links on light backgrounds), paper `#F5F2EB`, paper-2 `#ECE7DC`, slate `#4F5A6A`, and the note colors yellow `#FCE742`, blue `#9AD5FC`, green `#C3ED86`, orange `#FCA75A`, pink `#FC99C4` for accents (eyebrow dashes, phase tabs, simulation chips, the Execute tag, the brush underline under the hero title; yellow replaces any accent text on navy sections). The earlier burnt-orange accent was removed at Larry's request (Oct 2026): no extra accent color beyond navy and the logo's note colors. Primary buttons are navy with white text; the form's submit button is note yellow with navy text.
+- **Type:** IBM Plex Sans + IBM Plex Sans Hebrew (self-hosted, SIL OFL), IBM Plex Mono for small labels.
+- Hero visual is the six-capability diagram (navy, yellow EXECUTE label). A sticky-note collage in the hero was tried and rejected as too playful for the corporate B2B tone; keep the notes to the logo and small accents.
 
 ## House style rules (carry over from the pitch deck work)
 
@@ -47,7 +48,7 @@ B2B marketing and lead-generation site for **xSim**, simulation-based executive 
 3. Confirm it is fine to name four simulations publicly (The $100M Decision, Customer Rescue, Blind Builder, The Perfect Meeting).
 4. Privacy policy is a draft: the 24-month retention period is a placeholder and the whole page needs legal review against the Israeli Privacy Protection Law.
 5. Who receives lead notifications (currently larry@shertz.com only) and who answers hello@xsim.dev.
-6. Approve or replace the proposed wordmark and palette.
+6. Logo now in use (Oct 2026); confirm the accent palette built around it.
 7. Possible later additions: booking link (e.g. Cal.com) on the thank-you page, case studies after the alpha pilots, the Executive Team Pulse as an online form (would also use Turnstile).
 
 ## File map
