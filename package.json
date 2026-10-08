@@ -4,7 +4,7 @@
   "description": "xsim.dev marketing and lead-generation site (Cloudflare Workers + static assets)",
   "scripts": {
     "build": "node build.mjs",
-    "dev": "node build.mjs && wrangler dev",
+    "dev": "node build.mjs --dev && wrangler dev",
     "deploy": "node build.mjs && wrangler deploy",
     "db:migrate:local": "wrangler d1 migrations apply xsim-leads --local",
     "db:migrate": "wrangler d1 migrations apply xsim-leads --remote",

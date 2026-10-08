@@ -9,6 +9,12 @@ const OUT = "public";
 const read = (p) => JSON.parse(readFileSync(p, "utf8"));
 
 const site = read("src/content/site.json");
+
+// Local preview (`npm run dev` passes --dev): use Cloudflare's dummy Turnstile site key.
+// Its dummy token is accepted by the dummy secret in .dev.vars; a real site key's token
+// is rejected by the dummy secret, which is why the form failed locally.
+const DEV = process.argv.includes("--dev");
+if (DEV) site.turnstileSiteKey = "1x00000000000000000000AA";
 const langs = { en: read("src/content/en.json"), he: read("src/content/he.json") };
 
 // Cache-busting id from the CSS/JS contents
@@ -60,10 +66,10 @@ for (const [code, t] of Object.entries(langs)) {
   const s = JSON.stringify(t);
   for (const re of banned) if (re.test(s)) console.warn(`WARNING: em dash found in src/content/${code}.json`);
 }
-if (site.turnstileSiteKey.startsWith("1x000")) {
+if (!DEV && site.turnstileSiteKey.startsWith("1x000")) {
   console.warn("NOTE: using the Turnstile TEST site key. Put the real site key in src/content/site.json before going live.");
 }
 if (!existsSync(join(OUT, "assets/img/og-en.png"))) {
   console.warn("NOTE: social preview image missing (assets/img/og-en.png).");
 }
-console.log(`Built ${OUT}/ (buildId ${site.buildId})`);
+console.log(`Built ${OUT}/ (buildId ${site.buildId})${DEV ? " [local preview: Turnstile test keys]" : ""}`);
