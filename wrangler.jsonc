@@ -46,6 +46,8 @@
     "NOTIFY_TO": "larry@shertz.com,jdstein7@gmail.com",
     // Sender. Must be on a domain onboarded to Cloudflare Email (xsim.dev).
     "NOTIFY_FROM": "leads@xsim.dev",
+    // Where a click on Reply in a lead notification goes.
+    "REPLY_TO": "hello@xsim.dev",
     // Hostnames allowed to submit the form (Origin + Turnstile hostname check).
     // Local dev adds localhost via .dev.vars. Add the workers.dev hostname here if you test there.
     "ALLOWED_HOSTS": "xsim.dev,www.xsim.dev"
