@@ -54,7 +54,7 @@ In the Cloudflare dashboard: **xsim.dev → Email → Email Routing**.
 2. Under **Destination addresses**, add `larry@shertz.com` and click the verification link Cloudflare emails you. Notifications only work after this.
 3. Under **Routing rules**, create `hello@xsim.dev` and forward it to `larry@shertz.com` (this is the public contact address on the site).
 
-To notify someone else as well (for example Jeremy), verify their address here first, then ask Claude to add them as a second recipient in `wrangler.jsonc`.
+To notify another address, verify it here first, then add it to both `NOTIFY_TO` and `send_email.allowed_destination_addresses` in `wrangler.jsonc`.
 
 ### 4. Create the Turnstile widget
 
@@ -153,7 +153,7 @@ The push deploys. If a build fails, the live site stays on the previous version;
 
 - **Wording**: `src/content/en.json` and `src/content/he.json`.
 - **Design**: `site/static/assets/css/site.css`.
-- **Preview locally before pushing**: copy `.dev.vars.example` to `.dev.vars`, run `npm run db:migrate:local` once, then `npm run dev` and open http://127.0.0.1:8787. Turnstile test keys are used locally and always pass.
+- **Preview locally before pushing**: copy `.dev.vars.example` to `.dev.vars`, run `npm run db:migrate:local` once, then `npm run dev` and open http://127.0.0.1:8787. The preview is built with Cloudflare's Turnstile test site key, which pairs with the test secret in `.dev.vars`; the widget shows a "testing only" label locally, which is expected.
 - **Social preview images**: `node tools/make-images.cjs` (needs `npx playwright install chromium` once).
 - **Database schema changes** are not applied by the build. After pushing a new file in `migrations/`, run `npm run db:migrate` once.
 - **Emergency deploy without GitHub**: `npm run deploy` still works, but push the same change afterwards so GitHub and the live site don't drift apart.

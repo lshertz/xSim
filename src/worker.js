@@ -174,7 +174,7 @@ async function handleLead(request, env, url) {
   if (env.EMAIL && recipients.length && env.NOTIFY_FROM) {
     const message = {
       from: { email: env.NOTIFY_FROM, name: "xSim website" },
-      // Replies go to the shared xSim inbox, not to the lead (Larry, Oct 2026).
+      // Replies go to the shared xSim inbox, not to the lead.
       replyTo: { email: env.REPLY_TO || "hello@xsim.dev", name: "xSim" },
       subject: `New xSim briefing request: ${lead.company} (${lead.name})`,
       text: notificationText(lead, id, createdAt, country),
