@@ -37,12 +37,13 @@
 
   // Lead notification email. Sending to a *verified* Email Routing destination
   // address is free on all plans.
-  "send_email": [{ "name": "EMAIL", "allowed_destination_addresses": ["larry@shertz.com"] }],
+  "send_email": [{ "name": "EMAIL", "allowed_destination_addresses": ["larry@shertz.com", "jdstein7@gmail.com"] }],
 
   "vars": {
     // Public Turnstile site key is set in src/content/site.json (it is public by design).
-    // Where lead notifications go. Must be a verified destination in Email Routing.
-    "NOTIFY_TO": "larry@shertz.com",
+    // Where lead notifications go (comma-separated). Each must be a verified destination in Email Routing
+    // and also listed in send_email.allowed_destination_addresses above.
+    "NOTIFY_TO": "larry@shertz.com,jdstein7@gmail.com",
     // Sender. Must be on a domain onboarded to Cloudflare Email (xsim.dev).
     "NOTIFY_FROM": "leads@xsim.dev",
     // Hostnames allowed to submit the form (Origin + Turnstile hostname check).

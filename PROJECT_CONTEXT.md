@@ -47,7 +47,7 @@ B2B marketing and lead-generation site for **xSim**, simulation-based executive 
 2. Confirm the Integrate deliverables shown on the site: CEO report and 90-day check-ins (Jeremy noted the full diagnostic is "a real commitment").
 3. Confirm it is fine to name four simulations publicly (The $100M Decision, Customer Rescue, Blind Builder, The Perfect Meeting).
 4. Privacy policy is a draft: the 24-month retention period is a placeholder and the whole page needs legal review against the Israeli Privacy Protection Law.
-5. Who receives lead notifications (currently larry@shertz.com only) and who answers hello@xsim.dev.
+5. Lead notifications go to larry@shertz.com and jdstein7@gmail.com (both must be verified Email Routing destinations). Still open: who answers hello@xsim.dev.
 6. Logo now in use (Oct 2026); confirm the accent palette built around it.
 7. Possible later additions: booking link (e.g. Cal.com) on the thank-you page, case studies after the alpha pilots, the Executive Team Pulse as an online form (would also use Turnstile).
 

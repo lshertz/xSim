@@ -163,23 +163,31 @@ async function handleLead(request, env, url) {
     }
   }
 
-  // 6. Notify
+  // 6. Notify. NOTIFY_TO is a comma-separated list; each address must be a verified
+  // Email Routing destination. Sent one by one so a problem with one recipient
+  // does not stop the others.
   let emailed = false;
-  if (env.EMAIL && env.NOTIFY_TO && env.NOTIFY_FROM) {
-    try {
-      await env.EMAIL.send({
-        to: env.NOTIFY_TO,
-        from: { email: env.NOTIFY_FROM, name: "xSim website" },
-        replyTo: { email: lead.email, name: lead.name },
-        subject: `New xSim briefing request: ${lead.company} (${lead.name})`,
-        text: notificationText(lead, id, createdAt, country),
-      });
-      emailed = true;
-      if (stored) {
-        await env.DB.prepare("UPDATE leads SET emailed = 1 WHERE id = ?1").bind(id).run();
+  const recipients = String(env.NOTIFY_TO || "")
+    .split(",")
+    .map((a) => a.trim())
+    .filter(Boolean);
+  if (env.EMAIL && recipients.length && env.NOTIFY_FROM) {
+    const message = {
+      from: { email: env.NOTIFY_FROM, name: "xSim website" },
+      replyTo: { email: lead.email, name: lead.name },
+      subject: `New xSim briefing request: ${lead.company} (${lead.name})`,
+      text: notificationText(lead, id, createdAt, country),
+    };
+    for (const to of recipients) {
+      try {
+        await env.EMAIL.send({ ...message, to });
+        emailed = true;
+      } catch (err) {
+        console.error("notification email failed", to, err && (err.code || err.message));
       }
-    } catch (err) {
-      console.error("notification email failed", err && (err.code || err.message));
+    }
+    if (emailed && stored) {
+      await env.DB.prepare("UPDATE leads SET emailed = 1 WHERE id = ?1").bind(id).run();
     }
   }
 
@@ -266,8 +274,6 @@ function notificationText(lead, id, createdAt, country) {
     "",
     `Lead ID: ${id}`,
     `Received: ${createdAt}`,
-    "",
-    "Reply to this email to answer the lead directly.",
   ].join("\n");
 }
 
