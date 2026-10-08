@@ -116,12 +116,12 @@ The code lives in a **private** GitHub repository. Cloudflare's Workers Builds w
 
 ### One-time: create the repository and push
 
-1. On github.com: **New repository** → name `xsim-website` → **Private** → do *not* add a README, .gitignore or license (the folder already has them) → **Create repository**.
-2. In Command Prompt, in the `xsim-website` folder (replace `YOUR-GITHUB-USERNAME`):
+1. On github.com: **New repository** → name `xSim` → **Private** → do *not* add a README, .gitignore or license (the folder already has them) → **Create repository**.
+2. In Command Prompt, in the `xsim-website` folder :
 
    ```
    git status
-   git remote add origin https://github.com/YOUR-GITHUB-USERNAME/xsim-website.git
+   git remote add origin https://github.com/lshertz/xSim.git
    git push -u origin main
    ```
 
@@ -130,7 +130,7 @@ The code lives in a **private** GitHub repository. Cloudflare's Workers Builds w
 ### One-time: connect the repository to Cloudflare
 
 1. Dashboard: **Workers & Pages → xsim-website → Settings → Builds → Connect**.
-2. Authorize the Cloudflare GitHub app for the `xsim-website` repository only (not all repositories).
+2. Authorize the Cloudflare GitHub app for the `xSim` repository only (not all repositories).
 3. Settings:
    - Git branch: `main`
    - Build command: `npm run build`
