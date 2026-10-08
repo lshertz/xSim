@@ -30,7 +30,7 @@
     {
       "binding": "DB",
       "database_name": "xsim-leads",
-      "database_id": "REPLACE_WITH_DATABASE_ID",
+      "database_id": "76b173de-ce41-46b9-a463-8a9b7b75527a",
       "migrations_dir": "migrations"
     }
   ],

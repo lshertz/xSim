@@ -1,6 +1,29 @@
+# --- Secrets: never commit ---------------------------------------------
+# Local secrets for `npm run dev` (the real Turnstile secret lives in Cloudflare, not here)
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+.env
+.env.*
+!.env.example
+# Keys, certificates, credential exports
+*.pem
+*.key
+*.p12
+*.pfx
+*credentials*.json
+*token*.txt
+# Wrangler local state (local D1 copy, cached auth for some setups)
+.wrangler/
+
+# --- Generated / installed -----------------------------------------------
 node_modules/
 public/
-.wrangler/
-.dev.vars
+
+# --- OS / editor noise -------------------------------------------------------
 .DS_Store
+Thumbs.db
+desktop.ini
 *.log
+.vscode/
+.idea/

@@ -40,7 +40,7 @@ A browser window opens to authorize Wrangler (Cloudflare's command-line tool) on
 npx wrangler d1 create xsim-leads
 ```
 
-Copy the `database_id` it prints into `wrangler.jsonc` (replace `REPLACE_WITH_DATABASE_ID`), then create the table:
+Copy only the `database_id` it prints into `wrangler.jsonc` (replace `REPLACE_WITH_DATABASE_ID`). Ignore the rest of the snippet Wrangler suggests: keep `"binding": "DB"` as it is, because the site's code looks for the database under that name. Then create the table:
 
 ```powershell
 npm run db:migrate
@@ -66,7 +66,7 @@ Dashboard: **Turnstile → Add widget**.
 
 Copy the **Site key** into `src/content/site.json` (`turnstileSiteKey`). The site key is public by design. Keep the **Secret key** for step 6.
 
-### 5. Deploy
+### 5. First deploy
 
 ```powershell
 npm run deploy
@@ -84,9 +84,21 @@ Paste the secret key when prompted. It is stored encrypted at Cloudflare and nev
 
 ### 7. Recommended dashboard settings for xsim.dev
 
-- **Rules → Redirect Rules**: use the "Redirect from WWW to root" template so everyone lands on `https://xsim.dev`.
-- **SSL/TLS → Edge Certificates**: Always Use HTTPS on.
-- **Security → Bots**: Bot Fight Mode on (free).
+Log in at https://dash.cloudflare.com, open your account and click **xsim.dev** in the domain list. These settings are per domain.
+
+**Send www to the main address.** Go to **Rules → Overview → Create rule → Redirect Rule**. Name it "www to root", choose **Wildcard pattern**, and set:
+- Request URL: `https://www.*`
+- Target URL: `https://${1}`
+- Status code: `301`
+- Preserve query string: on
+
+Then **Deploy**. Test it by opening https://www.xsim.dev; you should end up at https://xsim.dev.
+
+**Always Use HTTPS.** Go to **SSL/TLS → Edge Certificates** and turn on **Always Use HTTPS**. (It is hidden if the SSL/TLS encryption mode on the Overview page is set to Off.)
+
+**Bot Fight Mode: leave it off for now.** It cannot be bypassed for specific paths and Cloudflare notes it may challenge API traffic, which could block the briefing form's submission. The form is already protected by Turnstile. Revisit only if you see abuse.
+
+Sources: [Single Redirects in the dashboard](https://developers.cloudflare.com/rules/url-forwarding/single-redirects/create-dashboard/), [www to root example](https://developers.cloudflare.com/rules/url-forwarding/examples/redirect-www-to-root/), [Always Use HTTPS](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/always-use-https/), [Bot Fight Mode](https://developers.cloudflare.com/bots/get-started/bot-fight-mode/).
 
 ### 8. Test it live
 
@@ -96,16 +108,55 @@ Open https://xsim.dev, submit the form with your own details, and confirm the em
 npm run leads
 ```
 
-## Everyday changes
+## Publishing workflow: GitHub → Cloudflare (the standard way)
 
-- **Wording**: edit `src/content/en.json` or `src/content/he.json`, then `npm run deploy`.
+The code lives in a **private** GitHub repository. Cloudflare's Workers Builds watches the `main` branch: every push builds the site and deploys it to xsim.dev. You no longer run `npm run deploy` by hand. Free plan: 3,000 build minutes a month, one build at a time, 20-minute limit per build; this site builds in about a minute. ([Workers Builds](https://developers.cloudflare.com/workers/ci-cd/builds/), [configuration](https://developers.cloudflare.com/workers/ci-cd/builds/configuration/), [limits](https://developers.cloudflare.com/workers/ci-cd/builds/limits-and-pricing/))
+
+**Secrets never go to GitHub.** The Turnstile secret is stored in Cloudflare (Workers & Pages → xsim-website → Settings → Variables and Secrets) and survives every deploy. `.gitignore` blocks `.dev.vars`, `.env` files, keys and certificates, `.wrangler/`, `node_modules/` and `public/`. What *is* in the repo and is fine to be there: the Turnstile **site** key (public by design, it ships in every page), the D1 database ID (useless without your Cloudflare login) and your notification address.
+
+### One-time: create the repository and push
+
+1. On github.com: **New repository** → name `xsim-website` → **Private** → do *not* add a README, .gitignore or license (the folder already has them) → **Create repository**.
+2. In Command Prompt, in the `xsim-website` folder (replace `YOUR-GITHUB-USERNAME`):
+
+   ```
+   git status
+   git remote add origin https://github.com/YOUR-GITHUB-USERNAME/xsim-website.git
+   git push -u origin main
+   ```
+
+   `git status` should say "nothing to commit". Before the first push, `git ls-files` lists exactly what will be uploaded; `.dev.vars` must not appear.
+
+### One-time: connect the repository to Cloudflare
+
+1. Dashboard: **Workers & Pages → xsim-website → Settings → Builds → Connect**.
+2. Authorize the Cloudflare GitHub app for the `xsim-website` repository only (not all repositories).
+3. Settings:
+   - Git branch: `main`
+   - Build command: `npm run build`
+   - Deploy command: `npx wrangler deploy` (the default)
+   - Root directory: leave empty
+4. Save. The Worker name in the dashboard (`xsim-website`) already matches `wrangler.jsonc`, which Workers Builds requires.
+5. Test: make a tiny wording change, then commit and push (below). Watch the build under **Deployments**, then check xsim.dev.
+
+### Everyday changes
+
+```
+git pull
+(edit files)
+git add -A
+git commit -m "Short description of the change"
+git push
+```
+
+The push deploys. If a build fails, the live site stays on the previous version; the build log in the dashboard says why.
+
+- **Wording**: `src/content/en.json` and `src/content/he.json`.
 - **Design**: `site/static/assets/css/site.css`.
-- **Preview locally**: copy `.dev.vars.example` to `.dev.vars`, run `npm run db:migrate:local` once, then `npm run dev` and open http://127.0.0.1:8787. Turnstile test keys are used locally and always pass.
+- **Preview locally before pushing**: copy `.dev.vars.example` to `.dev.vars`, run `npm run db:migrate:local` once, then `npm run dev` and open http://127.0.0.1:8787. Turnstile test keys are used locally and always pass.
 - **Social preview images**: `node tools/make-images.cjs` (needs `npx playwright install chromium` once).
-
-## Optional: deploy automatically from GitHub
-
-Put this folder in a **private** GitHub repository, then in the dashboard open **Workers & Pages → xsim-website → Settings → Builds** and connect the repository. Set the build command to `npm run build` and the deploy command to `npx wrangler deploy`. After that, every push to `main` deploys. This is the better setup once more than one person (or more than one Claude chat) is editing the site, because every change is versioned.
+- **Database schema changes** are not applied by the build. After pushing a new file in `migrations/`, run `npm run db:migrate` once.
+- **Emergency deploy without GitHub**: `npm run deploy` still works, but push the same change afterwards so GitHub and the live site don't drift apart.
 
 ## Optional: traffic statistics
 

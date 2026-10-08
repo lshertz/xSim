@@ -8,6 +8,10 @@ B2B marketing and lead-generation site for **xSim**, simulation-based executive 
 
 **Goal of the site:** give senior buyers (CEO, CHRO/VP HR, Chief of Staff) high-quality, high-level information, then convert them into a **briefing request**: a sales meeting where the client pitch deck is presented. The site is not the pitch itself.
 
+## Status
+
+**Live at https://xsim.dev since Oct 8 2026** (Cloudflare account lshertz@gmail.com). **Workflow: private GitHub repo `xsim-website`, branch `main`; Cloudflare Workers Builds deploys every push** (build `npm run build`, deploy `npx wrangler deploy`). Do not deploy with `npm run deploy` except in an emergency, and push afterwards. Secrets live only in Cloudflare; `.gitignore` blocks `.dev.vars`, `.env*`, keys and `.wrangler/`. The briefing form is confirmed working end to end with Turnstile. Deploy lessons: keep the D1 binding named `DB` (ignore the binding name Wrangler suggests); if `wrangler login` times out on Windows, retry or use an API token; the Turnstile secret can also be set in the dashboard under Workers & Pages → xsim-website → Settings → Variables and Secrets. Bot Fight Mode is deliberately off (it can challenge the form's API call and cannot be bypassed per path).
+
 ## Decisions made (Oct 2026)
 
 - Hosting: Cloudflare Workers with static assets, D1 for leads, Email Routing for notifications, Turnstile on every form. All free tier. Vercel rejected: Hobby plan is non-commercial only.
@@ -58,7 +62,7 @@ site/static/            CSS, JS, fonts, images, _headers, robots.txt
 migrations/             D1 schema
 build.mjs               builds ./public
 wrangler.jsonc          Cloudflare config (routes, D1, email, vars)
-DEPLOY.md               setup and deployment steps
+DEPLOY.md               setup, GitHub → Cloudflare workflow
 ```
 
 Source material lives in the ExecutiveTraining folder: `SharedGDriveMirror/Simulations/xSim Curiculum Overview.docx`, `SharedGDriveMirror/JDS Misc/xSim Survey Discussion and Business Offering.docx`, `SharedGDriveMirror/Sales/EDGE_Client_Pitch_Deck_Draft4.pptx`, and the facilitator kits.
