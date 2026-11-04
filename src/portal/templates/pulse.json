@@ -1,0 +1,1644 @@
+{
+ "title_en": "Executive Team Performance Pulse",
+ "title_he": "אבחון ביצועי צוות ההנהלה (Executive Team Performance Pulse)",
+ "intro_en": "High-performing leadership teams are not defined simply by the quality of the individuals around the table. They are defined by how effectively those individuals operate together, especially when information is incomplete, priorities conflict, time is limited and the stakes are high.\n\nThis Pulse is designed to identify the team's strongest capabilities and the areas where greater effectiveness may be possible. Your responses will help shape a customized Executive Performance Lab focused on the issues most relevant to your organization.\n\nYour individual responses will be treated as confidential and will not be shared with the CEO or other participants. Findings will be reported in aggregate and used to identify team-level themes and gaps. The purpose is to understand how the leadership team operates, not to evaluate individual executives. The CEO will receive a consolidated view of the team's findings and priorities.\n\nPlease answer based on your actual experience of the leadership team, not the way you believe the team is supposed to operate. There are no right answers. Candid responses are considerably more useful than positive responses. Estimated completion time: 10 to 15 minutes. Your answers are saved as you go, and you can return and change them until the survey closes.",
+ "intro_he": "צוותי הנהלה בעלי ביצועים גבוהים אינם מוגדרים רק לפי איכותם של האנשים סביב השולחן. הם מוגדרים לפי מידת האפקטיביות שבה האנשים האלה פועלים יחד, במיוחד כשהמידע חלקי, סדרי העדיפויות מתנגשים, הזמן מוגבל והסיכון גבוה.\n\nהאבחון נועד לזהות את היכולות החזקות ביותר של הצוות ואת התחומים שבהם ניתן להגיע לאפקטיביות גבוהה יותר. התשובות שלכם יסייעו לעצב Executive Performance Lab מותאם, שיתמקד בנושאים הרלוונטיים ביותר לארגון שלכם.\n\nהתשובות האישיות שלכם יישמרו בסודיות ולא יועברו למנכ\"ל או למשתתפים אחרים. הממצאים יוצגו באופן מצרפי וישמשו לזיהוי נושאים ופערים ברמת הצוות. המטרה היא להבין כיצד צוות ההנהלה פועל, ולא להעריך מנהלים בודדים. המנכ\"ל יקבל תמונה מאוחדת של ממצאי הצוות וסדרי העדיפויות שלו.\n\nאנא ענו על סמך הניסיון שלכם בפועל עם צוות ההנהלה, ולא לפי האופן שבו לדעתכם הצוות אמור לפעול. אין תשובות נכונות. תשובות כנות מועילות הרבה יותר מתשובות חיוביות. זמן מילוי משוער: 10 עד 15 דקות. התשובות נשמרות תוך כדי מילוי, ותוכלו לחזור ולשנות אותן עד לסגירת הסקר.",
+ "sections": [
+  {
+   "title_en": "Part 1. Information Flow & Communication",
+   "title_he": "חלק 1. זרימת מידע ותקשורת",
+   "intro_en": "For each statement, select the response that best reflects the leadership team's current behavior.\n1 Almost Never: this is rarely or almost never true of the team. 2 Infrequently: this happens occasionally, but is not a reliable team behavior. 3 Sometimes: this is true in some situations, but inconsistent. 4 Usually: this is generally true, with occasional exceptions. 5 Almost Always: this is a consistent strength of the team.\nIf you genuinely do not have enough exposure to answer a statement, select N/A rather than guessing.",
+   "intro_he": "לכל היגד, בחרו את התשובה שמשקפת בצורה הטובה ביותר את ההתנהגות הנוכחית של צוות ההנהלה.\n1 כמעט אף פעם: ההיגד נכון לעתים רחוקות מאוד לגבי הצוות. 2 לעתים רחוקות: זה קורה מדי פעם, אך אינו התנהגות צוותית שאפשר לסמוך עליה. 3 לפעמים: נכון בחלק מהמצבים, אך לא בעקביות. 4 בדרך כלל: נכון בדרך כלל, עם חריגים מדי פעם. 5 כמעט תמיד: זו חוזקה עקבית של הצוות.\nאם באמת אין לכם מספיק חשיפה כדי לענות על היגד, בחרו \"לא רלוונטי\" במקום לנחש.",
+   "capability": "info",
+   "questions": [
+    {
+     "type": "likert",
+     "text_en": "Important information reaches the people who need it before key decisions are made.",
+     "text_he": "מידע חשוב מגיע לאנשים שזקוקים לו לפני שמתקבלות החלטות מפתח.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "We communicate difficult or inconvenient information rather than allowing it to remain hidden.",
+     "text_he": "אנחנו מעבירים מידע קשה או לא נוח, במקום להניח לו להישאר מוסתר.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "People ask clarifying questions when information is incomplete or ambiguous.",
+     "text_he": "אנשים שואלים שאלות הבהרה כשהמידע חלקי או עמום.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "Executives actively listen to perspectives that differ from their own.",
+     "text_he": "המנהלים מקשיבים באופן פעיל לנקודות מבט השונות משלהם.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "Important decisions are communicated clearly to the people responsible for executing them.",
+     "text_he": "החלטות חשובות מועברות בבהירות לאנשים האחראים לביצוען.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "We close the loop when information, requests or decisions move between functions.",
+     "text_he": "אנחנו סוגרים את המעגל כשמידע, בקשות או החלטות עוברים בין יחידות.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    }
+   ]
+  },
+  {
+   "title_en": "Part 1. Decision-Making Under Constraints",
+   "title_he": "חלק 1. קבלת החלטות תחת אילוצים",
+   "intro_en": "",
+   "intro_he": "",
+   "capability": "decide",
+   "questions": [
+    {
+     "type": "likert",
+     "text_en": "We can make important decisions without waiting for complete information.",
+     "text_he": "אנחנו מסוגלים לקבל החלטות חשובות בלי להמתין למידע מלא.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "We distinguish between facts, assumptions and opinions when making decisions.",
+     "text_he": "בקבלת החלטות אנחנו מבחינים בין עובדות, הנחות ודעות.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "We make trade-offs explicitly when time, money or resources are limited.",
+     "text_he": "כשזמן, כסף או משאבים מוגבלים, אנחנו מגדירים במפורש על מה אנחנו מוותרים ולטובת מה.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "We challenge the assumptions behind important decisions.",
+     "text_he": "אנחנו מאתגרים את ההנחות שמאחורי החלטות חשובות.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "We know when a decision needs more analysis and when it is time to decide.",
+     "text_he": "אנחנו יודעים מתי החלטה דורשת ניתוח נוסף ומתי הגיע הזמן להחליט.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "Once a decision is made, we generally move forward rather than repeatedly reopening it without new information.",
+     "text_he": "לאחר שהתקבלה החלטה, אנחנו בדרך כלל מתקדמים, במקום לפתוח אותה שוב ושוב בלי מידע חדש.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    }
+   ]
+  },
+  {
+   "title_en": "Part 1. Adaptability, Risk & Response",
+   "title_he": "חלק 1. הסתגלות, סיכון ותגובה",
+   "intro_en": "",
+   "intro_he": "",
+   "capability": "adapt",
+   "questions": [
+    {
+     "type": "likert",
+     "text_en": "We recognize when circumstances have changed enough to require a change in plan.",
+     "text_he": "אנחנו מזהים מתי הנסיבות השתנו במידה שמחייבת שינוי בתוכנית.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "We respond to unexpected problems without becoming paralyzed by uncertainty.",
+     "text_he": "אנחנו מגיבים לבעיות בלתי צפויות בלי להיות משותקים מחוסר ודאות.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "We identify significant risks before they become operational problems.",
+     "text_he": "אנחנו מזהים סיכונים משמעותיים לפני שהם הופכים לבעיות תפעוליות.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "We are willing to abandon an approach that is no longer working.",
+     "text_he": "אנחנו מוכנים לנטוש גישה שכבר אינה עובדת.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "People can raise emerging risks without being perceived as unnecessarily negative.",
+     "text_he": "אנשים יכולים להעלות סיכונים מתהווים בלי להיתפס כשליליים שלא לצורך.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "When priorities change, we quickly clarify what should stop, start or change.",
+     "text_he": "כשסדרי העדיפויות משתנים, אנחנו מבהירים במהירות מה צריך להיפסק, להתחיל או להשתנות.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    }
+   ]
+  },
+  {
+   "title_en": "Part 1. Cross-Functional Alignment & Collaboration",
+   "title_he": "חלק 1. תיאום ושיתוף פעולה בין-תחומי",
+   "intro_en": "",
+   "intro_he": "",
+   "capability": "align",
+   "questions": [
+    {
+     "type": "likert",
+     "text_en": "Executives optimize for the company's overall success rather than only for their own function.",
+     "text_he": "המנהלים פועלים להצלחת החברה כולה, ולא רק להצלחת היחידה שלהם.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "When functions disagree, we address the underlying business trade-off rather than simply escalating the disagreement.",
+     "text_he": "כשיש מחלוקת בין יחידות, אנחנו מתמודדים עם ההכרעה העסקית שבבסיסה, במקום פשוט להסלים אותה.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "We understand the constraints and priorities of other functions.",
+     "text_he": "אנחנו מבינים את האילוצים ואת סדרי העדיפויות של יחידות אחרות.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "Executives are willing to make reasonable compromises for the benefit of the broader organization.",
+     "text_he": "המנהלים מוכנים לפשרות סבירות לטובת הארגון כולו.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "Important cross-functional decisions have clear ownership and alignment.",
+     "text_he": "להחלטות בין-תחומיות חשובות יש בעלות ברורה ותיאום ברור.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "Disagreement between functions generally improves the quality of our decisions rather than slowing the organization down.",
+     "text_he": "מחלוקות בין יחידות בדרך כלל משפרות את איכות ההחלטות שלנו, ולא מאטות את הארגון.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    }
+   ]
+  },
+  {
+   "title_en": "Part 1. Leadership, Delegation & Accountability",
+   "title_he": "חלק 1. מנהיגות, האצלת סמכויות ואחריותיות",
+   "intro_en": "",
+   "intro_he": "",
+   "capability": "lead",
+   "questions": [
+    {
+     "type": "likert",
+     "text_en": "Executives have sufficient authority to make decisions within their areas of responsibility.",
+     "text_he": "למנהלים יש סמכות מספקת לקבל החלטות בתחומי האחריות שלהם.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "Leaders delegate outcomes, not merely tasks.",
+     "text_he": "מנהלים מאצילים תוצאות, ולא רק משימות.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "People know who owns important decisions and initiatives.",
+     "text_he": "אנשים יודעים מי הבעלים של החלטות ויוזמות חשובות.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "Problems are resolved at the lowest appropriate level rather than automatically moving upward.",
+     "text_he": "בעיות נפתרות ברמה הנמוכה המתאימה, במקום לעלות אוטומטית כלפי מעלה.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "Leadership capacity is distributed rather than concentrated in one or two individuals.",
+     "text_he": "יכולת ההובלה מבוזרת, ואינה מרוכזת באדם אחד או שניים.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "When commitments are missed, the team addresses the issue directly and constructively.",
+     "text_he": "כשמחויבויות אינן מתקיימות, הצוות מטפל בנושא באופן ישיר ובונה.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    }
+   ]
+  },
+  {
+   "title_en": "Part 1. Customer-Centric Value Creation",
+   "title_he": "חלק 1. יצירת ערך ממוקדת לקוח",
+   "intro_en": "",
+   "intro_he": "",
+   "capability": "customer",
+   "questions": [
+    {
+     "type": "likert",
+     "text_en": "We consider customer impact when making significant business decisions.",
+     "text_he": "אנחנו שוקלים את ההשפעה על הלקוחות בקבלת החלטות עסקיות משמעותיות.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "We regularly use direct customer insight to challenge internal assumptions.",
+     "text_he": "אנחנו משתמשים באופן קבוע בתובנות ישירות מלקוחות כדי לאתגר הנחות פנימיות.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "We understand what customers actually value rather than relying primarily on what we think they value.",
+     "text_he": "אנחנו מבינים מה הלקוחות באמת מעריכים, במקום להסתמך בעיקר על מה שאנחנו חושבים שהם מעריכים.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "When internal priorities conflict with customer needs, the trade-off is explicitly discussed.",
+     "text_he": "כשסדרי עדיפויות פנימיים מתנגשים בצורכי הלקוחות, ההכרעה ביניהם נדונה במפורש.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "Customer experience is treated as a leadership responsibility rather than only a Customer Success or Service responsibility.",
+     "text_he": "חוויית הלקוח נתפסת כאחריות של ההנהלה, ולא רק של מחלקת הצלחת לקוחות או השירות.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "We can identify situations where internal convenience has been prioritized over customer value.",
+     "text_he": "אנחנו מסוגלים לזהות מצבים שבהם נוחות פנימית קיבלה עדיפות על פני הערך ללקוח.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    }
+   ]
+  },
+  {
+   "title_en": "Part 1. Execution, Team Dynamics & Meeting Effectiveness",
+   "title_he": "חלק 1. ביצוע, דינמיקה צוותית ויעילות ישיבות",
+   "intro_en": "",
+   "intro_he": "",
+   "capability": "execute",
+   "questions": [
+    {
+     "type": "likert",
+     "text_en": "Our leadership meetings consistently produce clear decisions, owners and next steps.",
+     "text_he": "ישיבות ההנהלה שלנו מסתיימות בעקביות בהחלטות ברורות, בבעלי אחריות ובצעדים הבאים.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "We spend sufficient time debating important issues without allowing discussion to become unnecessarily circular.",
+     "text_he": "אנחנו מקדישים מספיק זמן לדיון בנושאים חשובים, בלי לתת לדיון להסתובב במעגלים שלא לצורך.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "People feel able to challenge ideas, including those of senior leaders.",
+     "text_he": "אנשים מרגישים שהם יכולים לאתגר רעיונות, כולל רעיונות של מנהלים בכירים.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "Once a commitment is made, people reliably follow through.",
+     "text_he": "לאחר שנלקחה מחויבות, אנשים עומדים בה באופן אמין.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "We address unresolved conflict rather than allowing it to persist beneath the surface.",
+     "text_he": "אנחנו מטפלים בקונפליקטים לא פתורים, במקום לאפשר להם להימשך מתחת לפני השטח.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    },
+    {
+     "type": "likert",
+     "text_en": "The leadership team can disagree openly while maintaining trust and respect.",
+     "text_he": "צוות ההנהלה יכול לחלוק בגלוי תוך שמירה על אמון וכבוד.",
+     "required": true,
+     "config": {
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Almost Never",
+        "he": "כמעט אף פעם"
+       },
+       {
+        "en": "Infrequently",
+        "he": "לעתים רחוקות"
+       },
+       {
+        "en": "Sometimes",
+        "he": "לפעמים"
+       },
+       {
+        "en": "Usually",
+        "he": "בדרך כלל"
+       },
+       {
+        "en": "Almost Always",
+        "he": "כמעט תמיד"
+       }
+      ],
+      "na": true
+     }
+    }
+   ]
+  },
+  {
+   "title_en": "Part 2. What matters most?",
+   "title_he": "חלק 2. מה הכי חשוב?",
+   "intro_en": "The previous section measured how the team currently operates. Now identify where improvement would matter most to the business.\n1 Low Importance: improvement would have limited impact on the business. 2 Somewhat Important: useful, but not a major current priority. 3 Important: meaningful impact if improved. 4 Very Important: a significant business priority. 5 Critical: improvement would have a major impact on business performance.",
+   "intro_he": "החלק הקודם מדד כיצד הצוות פועל כיום. כעת זהו היכן שיפור יהיה המשמעותי ביותר עבור העסק.\n1 חשיבות נמוכה: לשיפור תהיה השפעה מוגבלת על העסק. 2 חשוב במידה מסוימת: מועיל, אך אינו בראש סדר העדיפויות כרגע. 3 חשוב: לשיפור תהיה השפעה משמעותית. 4 חשוב מאוד: עדיפות עסקית משמעותית. 5 קריטי: לשיפור תהיה השפעה גדולה על הביצועים העסקיים.",
+   "capability": null,
+   "questions": [
+    {
+     "type": "grid",
+     "text_en": "For each capability below, rate its importance to your organization's success over the next 12 months.",
+     "text_he": "דרגו את החשיבות של כל אחת מהיכולות הבאות להצלחת הארגון שלכם ב-12 החודשים הקרובים.",
+     "required": true,
+     "config": {
+      "rows": [
+       {
+        "en": "Information Flow & Communication",
+        "he": "זרימת מידע ותקשורת",
+        "capability": "info"
+       },
+       {
+        "en": "Decision-Making Under Constraints",
+        "he": "קבלת החלטות תחת אילוצים",
+        "capability": "decide"
+       },
+       {
+        "en": "Adaptability, Risk & Response",
+        "he": "הסתגלות, סיכון ותגובה",
+        "capability": "adapt"
+       },
+       {
+        "en": "Cross-Functional Alignment & Collaboration",
+        "he": "תיאום ושיתוף פעולה בין-תחומי",
+        "capability": "align"
+       },
+       {
+        "en": "Leadership, Delegation & Accountability",
+        "he": "מנהיגות, האצלת סמכויות ואחריותיות",
+        "capability": "lead"
+       },
+       {
+        "en": "Customer-Centric Value Creation",
+        "he": "יצירת ערך ממוקדת לקוח",
+        "capability": "customer"
+       },
+       {
+        "en": "Execution, Team Dynamics & Meeting Effectiveness",
+        "he": "ביצוע, דינמיקה צוותית ויעילות ישיבות",
+        "capability": "execute"
+       }
+      ],
+      "points": 5,
+      "start": 1,
+      "labels": [
+       {
+        "en": "Low Importance",
+        "he": "חשיבות נמוכה"
+       },
+       {
+        "en": "Somewhat Important",
+        "he": "חשוב במידה מסוימת"
+       },
+       {
+        "en": "Important",
+        "he": "חשוב"
+       },
+       {
+        "en": "Very Important",
+        "he": "חשוב מאוד"
+       },
+       {
+        "en": "Critical",
+        "he": "קריטי"
+       }
+      ],
+      "na": false
+     }
+    }
+   ]
+  },
+  {
+   "title_en": "Part 2. The Priority Gap",
+   "title_he": "חלק 2. פער העדיפויות",
+   "intro_en": "If you could materially improve only three areas of leadership-team performance during the next 12 months, which three would you choose?",
+   "intro_he": "אילו יכולתם לשפר באופן משמעותי רק שלושה תחומים בביצועי צוות ההנהלה ב-12 החודשים הקרובים, אילו שלושה הייתם בוחרים?",
+   "capability": null,
+   "questions": [
+    {
+     "type": "text",
+     "text_en": "First area",
+     "text_he": "תחום ראשון",
+     "required": false,
+     "config": {
+      "maxLength": 300
+     }
+    },
+    {
+     "type": "text",
+     "text_en": "Second area",
+     "text_he": "תחום שני",
+     "required": false,
+     "config": {
+      "maxLength": 300
+     }
+    },
+    {
+     "type": "text",
+     "text_en": "Third area",
+     "text_he": "תחום שלישי",
+     "required": false,
+     "config": {
+      "maxLength": 300
+     }
+    }
+   ]
+  },
+  {
+   "title_en": "Part 3. Your perspective",
+   "title_he": "חלק 3. נקודת המבט שלכם",
+   "intro_en": "These questions are intentionally open-ended. Please be candid and specific. Do not identify individual colleagues unless absolutely necessary.",
+   "intro_he": "השאלות האלה פתוחות במכוון. אנא היו כנים וספציפיים. אל תזהו עמיתים ספציפיים אלא אם הדבר הכרחי לחלוטין.",
+   "capability": null,
+   "questions": [
+    {
+     "type": "longtext",
+     "text_en": "What does this leadership team do exceptionally well?",
+     "text_he": "מה צוות ההנהלה הזה עושה טוב במיוחד?",
+     "required": false,
+     "config": {
+      "maxLength": 3000
+     }
+    },
+    {
+     "type": "longtext",
+     "text_en": "What is the single biggest thing that currently prevents this leadership team from performing at a higher level?",
+     "text_he": "מהו הדבר הגדול ביותר שמונע כיום מצוות ההנהלה הזה לתפקד ברמה גבוהה יותר?",
+     "required": false,
+     "config": {
+      "maxLength": 3000
+     }
+    },
+    {
+     "type": "longtext",
+     "text_en": "What is one recurring behavior, meeting pattern or decision-making habit that costs the organization time, money, opportunity or customer value?",
+     "text_he": "מהי התנהגות חוזרת אחת, דפוס ישיבות או הרגל בקבלת החלטות, שעולה לארגון בזמן, בכסף, בהזדמנויות או בערך ללקוח?",
+     "required": false,
+     "config": {
+      "maxLength": 3000
+     }
+    },
+    {
+     "type": "longtext",
+     "text_en": "What is one thing the CEO or leadership team could do differently that would materially improve the way this team operates?",
+     "text_he": "מהו דבר אחד שהמנכ\"ל או צוות ההנהלה יכולים לעשות אחרת, שישפר באופן משמעותי את אופן הפעולה של הצוות?",
+     "required": false,
+     "config": {
+      "maxLength": 3000
+     }
+    },
+    {
+     "type": "longtext",
+     "text_en": "Where do you believe there is the biggest gap between what the leadership team says it values and how the organization actually behaves?",
+     "text_he": "היכן לדעתכם קיים הפער הגדול ביותר בין מה שצוות ההנהלה אומר שחשוב לו לבין האופן שבו הארגון מתנהג בפועל?",
+     "required": false,
+     "config": {
+      "maxLength": 3000
+     }
+    },
+    {
+     "type": "longtext",
+     "text_en": "If you could fix ONE leadership-team issue tomorrow, what would you fix?",
+     "text_he": "אילו יכולתם לתקן מחר נושא אחד בצוות ההנהלה, מה הייתם מתקנים?",
+     "required": false,
+     "config": {
+      "maxLength": 3000
+     }
+    },
+    {
+     "type": "longtext",
+     "text_en": "Final question: What is something you wish other members of the leadership team understood better about your role, function or challenges?",
+     "text_he": "שאלה אחרונה: מה הייתם רוצים שחברי צוות ההנהלה האחרים יבינו טוב יותר לגבי התפקיד, היחידה או האתגרים שלכם?",
+     "required": false,
+     "config": {
+      "maxLength": 3000
+     }
+    }
+   ]
+  }
+ ]
+}

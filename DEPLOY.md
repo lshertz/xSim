@@ -17,8 +17,8 @@ Sources: [Vercel Hobby plan](https://vercel.com/docs/plans/hobby), [Workers stat
 
 ## How the site is put together
 
-- **Pages** are plain HTML/CSS built by `npm run build` into `public/`. They are served as static assets and never run code.
-- **One Worker route**, `POST /api/lead`, handles the briefing form: origin check, honeypot, field validation, Turnstile verification (token, hostname and action), save to D1, email notification.
+- **Pages** are plain HTML/CSS built by `npm run build` into `public/`. They are served as static assets and never run code. The client portal at `/app/` is a static shell too; its data comes from the Worker under `/api/app/` (see "Client portal" below).
+- **The Worker** handles `/api/*` only. `POST /api/lead` handles the briefing form: origin check, honeypot, field validation, Turnstile verification (token, hostname and action), save to D1, email notification.
 - No cookies, no trackers, no third-party scripts other than Turnstile. Strict security headers are set in `site/static/_headers`.
 
 ## One-time setup (about 30 minutes)
@@ -157,6 +157,65 @@ The push deploys. If a build fails, the live site stays on the previous version;
 - **Social preview images**: `node tools/make-images.cjs` (needs `npx playwright install chromium` once).
 - **Database schema changes** are not applied by the build. After pushing a new file in `migrations/`, run `npm run db:migrate` once.
 - **Emergency deploy without GitHub**: `npm run deploy` still works, but push the same change afterwards so GitHub and the live site don't drift apart.
+
+## Client portal
+
+### First deployment of the portal
+
+1. Push the code (the build deploys it).
+2. Create the portal tables once: `npm run db:migrate` (applies 0002 and 0003; run it again whenever a new file appears in `migrations/`). The build does not apply migrations. Until this runs, the portal answers with an error and the rest of the site is unaffected.
+3. Create the two admin accounts, one at a time:
+
+   ```
+   npm run portal:admin -- admin@example.com "Full Name" "+972 ..."
+   ```
+
+   Each run prints a setup link (single use, valid 7 days). Open it, choose a password, scan the QR code with an authenticator app, enter the code and save the recovery codes. Add `he` as a fourth argument for a Hebrew setup page. Running the command again for the same email issues a fresh link, which also works as an emergency reset if an admin loses both the authenticator and the recovery codes.
+4. Sign in at https://xsim.dev/app/, add each customer company under Companies, then its people under Users.
+
+Local preview: `npm run db:migrate:local` (again after new migrations; if sign-in says the portal database needs an update, this is the step that was missed), then `npm run portal:admin:local -- you@example.com "Name" "+972 ..."` and open the printed http://127.0.0.1:8787 link while `npm run dev` is running. `npm run dev` passes `PORTAL_ORIGIN=http://127.0.0.1:8787` to the Worker so that links point at the preview and the session cookie works over plain http. Never set `PORTAL_ORIGIN` in production.
+
+### Portal email
+
+Today `MAIL_MODE` is `"manual"`: setup and reset links are shown to the admin, who sends them personally. Cloudflare can only send to arbitrary recipients on the Workers Paid plan ("Sending to arbitrary recipients requires the Workers Paid plan"; free plans send only to verified destination addresses). Workers Paid has a $5 per month minimum per account and includes 3,000 outbound emails a month, then $0.35 per 1,000. Cloudflare Email Sending is in beta. ([Email Service pricing](https://developers.cloudflare.com/email-service/platform/pricing/), [Workers pricing](https://developers.cloudflare.com/workers/platform/pricing/), [send bindings](https://developers.cloudflare.com/email-service/configuration/send-bindings/))
+
+**Option 1: Workers Paid with Cloudflare Email Service (no new code).**
+
+1. In the Cloudflare dashboard, upgrade the account to the Workers Paid plan (from the Workers & Pages section).
+2. In the dashboard's Email section, check that xsim.dev is onboarded for Email Sending (the sender address must belong to an onboarded Email Service domain; the lead form already sends from leads@xsim.dev).
+3. In `wrangler.jsonc`, add a second entry to `send_email` (the commented line is already there), limited to the portal sender:
+
+   ```jsonc
+   { "name": "MAILER", "allowed_sender_addresses": ["portal@xsim.dev"] }
+   ```
+
+   and set `"MAIL_MODE": "cloudflare"` in `vars`.
+4. Push. Test by creating a user with an address that is not a verified destination and confirm the email arrives. If sending fails, the admin still sees the link, so nothing is lost.
+
+The emails are plain text in the user's language (`src/portal/mail.js`) with replies going to hello@xsim.dev.
+
+**Option 2: another transactional email provider (small code change).** Choose a provider, verify xsim.dev with the DNS records it gives you (added in Cloudflare DNS), and store its API key as a Cloudflare secret, for example `npx wrangler secret put MAIL_API_KEY`. Then add a third mode to `deliverLink` in `src/portal/mail.js` that calls the provider's HTTPS API with `fetch` using that key, and set `MAIL_MODE` to the new mode. Everything else (link creation, fallback to showing the link) stays the same. Compare providers on price, Israeli/EU data handling and whether their free tier allows commercial use before choosing.
+
+### Portal operations
+
+- Activity (admins) lists the latest 200 account and survey events.
+- `npx wrangler d1 execute xsim-leads --remote --command "SELECT email, status, last_login_at FROM users"` lists accounts from the command line.
+- Survey answers stay in D1 until a survey or respondent is deleted. Retention for portal data is not yet defined (see PROJECT_CONTEXT.md, open items).
+
+### Portal security
+
+What the code does: passwords hashed with PBKDF2; a second factor (authenticator app) for everyone; Turnstile on sign-in; lockouts that grow for wrong codes; server-side sessions in HttpOnly, Secure, SameSite=Strict cookies that end after two hours idle; a custom header and Origin check against cross-site requests; single-use, expiring setup links carried in the URL fragment (never sent to the server or in referrers); strict Content-Security-Policy; customer logos checked by content and served as images only; CSV cells guarded against spreadsheet formulas; Admin and Editor roles confined to the xSim company; Viewer results only after closing and with at least 3 submissions; xSim (Admins and the survey's Editors) see results at any time, including answers not yet submitted.
+
+What the code cannot protect, and the steps that do:
+
+1. **The Cloudflare account is the master key.** Anyone who can sign in to it can read the database, change secrets and deploy code. Turn on two-factor authentication for the Cloudflare login, keep the number of people with access to the account minimal, and use scoped API tokens rather than the Global API Key for any tooling.
+2. **The GitHub repository is a deploy key.** Every push to `main` goes live, so anyone who can push can change the portal. Turn on two-factor authentication on GitHub, keep collaborators to the founders, and keep the Cloudflare GitHub app limited to the `xSim` repository.
+3. **Setup and reset links are bearer credentials** while email is manual. Whoever holds an unused link can set the password and 2FA for that account. Send each link only to its owner, through a channel you trust, and reissue it (New setup link) if in doubt; the old one stops working at once. Admin accounts deserve extra care, since a stolen admin link opens everything.
+4. **Rate limit the sign-in endpoint.** The Free plan includes one rate limiting rule (counting by IP over 10 seconds). In the dashboard, open the WAF settings for xsim.dev and add a rate limiting rule: match URI path equals `/api/app/login`, for example more than 5 requests in 10 seconds per IP, action Block. Turnstile already makes each attempt cost a solved challenge; this caps bursts. ([rate limiting rules](https://developers.cloudflare.com/waf/rate-limiting-rules/))
+5. **Turn off the workers.dev address if you do not use it.** `wrangler.jsonc` has `"workers_dev": true`, which also serves the Worker on a `*.workers.dev` hostname. Sign-in and every change are already refused there (the Origin check), but setting it to `false` removes that second public address.
+6. **Recovery codes and authenticator secrets are stored in D1.** Recovery codes are hashed; authenticator secrets cannot be (the server must compute codes from them). Someone with read access to the database would also need each user's password to sign in, but this is a reason to treat database exports and backups as confidential.
+
+Known limits, accepted for now: sign-in reveals that an account exists only when it is locked (a 429 response); a lockout can be triggered deliberately by someone who knows an email address and solves Turnstile, which delays that user by 15 minutes; Viewers who are also respondents know their own answers, so with very small teams the aggregate says more about the others. Raise `MIN_GROUP` in `src/portal/results.js` for stricter anonymity.
 
 ## Optional: traffic statistics
 

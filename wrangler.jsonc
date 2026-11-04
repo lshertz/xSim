@@ -37,7 +37,12 @@
 
   // Lead notification email. Sending to a *verified* Email Routing destination
   // address is free on all plans.
-  "send_email": [{ "name": "EMAIL", "allowed_destination_addresses": ["larry@shertz.com", "jdstein7@gmail.com"] }],
+  "send_email": [
+    { "name": "EMAIL", "allowed_destination_addresses": ["larry@shertz.com", "jdstein7@gmail.com"] }
+    // Portal invitations and password resets go to customer addresses. That needs the Workers Paid plan
+    // (see DEPLOY.md, "Portal email"). To switch it on, add the binding below and set MAIL_MODE to "cloudflare".
+    // , { "name": "MAILER" }
+  ],
 
   "vars": {
     // Public Turnstile site key is set in src/content/site.json (it is public by design).
@@ -50,7 +55,11 @@
     "REPLY_TO": "hello@xsim.dev",
     // Hostnames allowed to submit the form (Origin + Turnstile hostname check).
     // Local dev adds localhost via .dev.vars. Add the workers.dev hostname here if you test there.
-    "ALLOWED_HOSTS": "xsim.dev,www.xsim.dev"
+    "ALLOWED_HOSTS": "xsim.dev,www.xsim.dev",
+    // Client portal: how setup and reset links reach people. "manual" = shown to the admin to send by hand;
+    // "cloudflare" = emailed through the MAILER binding (Workers Paid plan).
+    "MAIL_MODE": "manual",
+    "PORTAL_FROM": "portal@xsim.dev"
   },
 
   // Secret (never commit): npx wrangler secret put TURNSTILE_SECRET_KEY

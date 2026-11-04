@@ -7,5 +7,15 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
   Cross-Origin-Opener-Policy: same-origin
 
+/app/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-cache
+  Referrer-Policy: no-referrer
+
+/he/app/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-cache
+  Referrer-Policy: no-referrer
+
 /assets/*
   Cache-Control: public, max-age=31536000, immutable

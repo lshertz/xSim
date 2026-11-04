@@ -5,5 +5,7 @@ Disallow: /thanks/
 Disallow: /he/thanks/
 Disallow: /contact-error/
 Disallow: /he/contact-error/
+Disallow: /app/
+Disallow: /he/app/
 
 Sitemap: https://xsim.dev/sitemap.xml

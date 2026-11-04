@@ -2,7 +2,8 @@
  * xsim.dev Worker
  *
  * Pages are static assets (served free, never touch this code).
- * This Worker only handles POST /api/lead:
+ * /api/app/* is the client portal API (see src/portal/).
+ * POST /api/lead handles the briefing form:
  *   1. origin + size checks
  *   2. honeypot
  *   3. field validation
@@ -11,7 +12,9 @@
  *   6. notification email to a verified address
  */
 
-const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+import { verifyTurnstile, turnstileMatches, allowedHostsOf } from "./turnstile.js";
+import { handlePortal } from "./portal/index.js";
+
 const TURNSTILE_ACTION = "lead";
 const MAX_BODY_BYTES = 16 * 1024;
 
@@ -47,6 +50,10 @@ export default {
       }
     }
 
+    if (url.pathname.startsWith("/api/app/")) {
+      return handlePortal(request, env, url, ctx);
+    }
+
     if (url.pathname.startsWith("/api/")) {
       return json({ ok: false, error: "not_found" }, 404);
     }
@@ -56,10 +63,7 @@ export default {
 };
 
 async function handleLead(request, env, url) {
-  const allowedHosts = (env.ALLOWED_HOSTS || "xsim.dev,www.xsim.dev")
-    .split(",")
-    .map((h) => h.trim().toLowerCase())
-    .filter(Boolean);
+  const allowedHosts = allowedHostsOf(env);
 
   // 1. Origin check (blocks cross-site form posts from other domains)
   const origin = request.headers.get("Origin");
@@ -125,18 +129,9 @@ async function handleLead(request, env, url) {
     console.warn("turnstile rejected", ts.reason);
     return respond(request, url, { ok: false, error: "verification_failed" }, 403, pageLang);
   }
-  // Hostname/action checks. Turnstile test keys return hostname "example.com", so only
-  // enforce the hostname when a real secret is configured.
-  const isTestSecret = (env.TURNSTILE_SECRET_KEY || "").startsWith("1x0000000000000000000000000000000AA");
-  if (!isTestSecret) {
-    if (ts.hostname && !allowedHosts.includes(String(ts.hostname).toLowerCase())) {
-      console.warn("turnstile hostname mismatch", ts.hostname);
-      return respond(request, url, { ok: false, error: "verification_failed" }, 403, pageLang);
-    }
-    if (ts.action && ts.action !== TURNSTILE_ACTION) {
-      console.warn("turnstile action mismatch", ts.action);
-      return respond(request, url, { ok: false, error: "verification_failed" }, 403, pageLang);
-    }
+  if (!turnstileMatches(ts, env, allowedHosts, TURNSTILE_ACTION)) {
+    console.warn("turnstile hostname or action mismatch", ts.hostname, ts.action);
+    return respond(request, url, { ok: false, error: "verification_failed" }, 403, pageLang);
   }
 
   // 5. Store
@@ -219,25 +214,6 @@ async function readBody(request) {
     }
   } catch (_) {}
   return null;
-}
-
-async function verifyTurnstile(token, ip, env) {
-  if (!env.TURNSTILE_SECRET_KEY) return { ok: false, reason: "missing_secret" };
-  if (!token || token.length > 2048) return { ok: false, reason: "missing_token" };
-  const body = new FormData();
-  body.append("secret", env.TURNSTILE_SECRET_KEY);
-  body.append("response", token);
-  if (ip) body.append("remoteip", ip);
-  body.append("idempotency_key", crypto.randomUUID());
-  try {
-    // TURNSTILE_VERIFY_URL override exists only for local testing (.dev.vars); never set it in production.
-    const res = await fetch(env.TURNSTILE_VERIFY_URL || TURNSTILE_VERIFY_URL, { method: "POST", body });
-    const out = await res.json();
-    if (!out.success) return { ok: false, reason: (out["error-codes"] || []).join(",") || "rejected" };
-    return { ok: true, hostname: out.hostname, action: out.action };
-  } catch (err) {
-    return { ok: false, reason: "siteverify_unreachable" };
-  }
 }
 
 function clean(v) {

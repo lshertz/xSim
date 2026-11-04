@@ -409,3 +409,57 @@ export function privacy(t, site) {
     body: `<div class="legal"><h1>${esc(t.privacy.title)}</h1><p class="legal__updated">${esc(t.privacy.updated)}</p>${sections}</div>`,
   });
 }
+
+// ---------- Client portal (/app/ and /he/app/) ----------
+// A static shell; site/static/assets/js/portal.js renders every view in the browser.
+// Strings come from src/content/portal/<lang>.json.
+
+export function portal(t, p, site) {
+  const appBase = t.lang === "he" ? "/he/app/" : "/app/";
+  const otherApp = t.lang === "he" ? "/app/" : "/he/app/";
+  const config = { lang: t.lang, turnstileSiteKey: site.turnstileSiteKey, t: p };
+  // JSON inside a script element: escape "<" so the content can never close the element.
+  const json = JSON.stringify(config).replace(/</g, "\\u003c");
+  return `<!doctype html>
+<html lang="${t.lang}" dir="${t.dir}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>${esc(p.meta.title)}</title>
+<meta name="theme-color" content="#0B1A36">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/${t.lang === "he" ? "ibm-plex-sans-hebrew-hebrew-400-normal" : "ibm-plex-sans-latin-400-normal"}.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css?v=${site.buildId}">
+<link rel="stylesheet" href="/assets/css/portal.css?v=${site.buildId}">
+<script type="application/json" id="portal-config">${json}</script>
+<script src="/assets/js/vendor/qrcode.js?v=${site.buildId}" defer></script>
+<script src="/assets/js/portal.js?v=${site.buildId}" defer></script>
+</head>
+<body class="portal">
+<a class="skip" href="#app">${esc(t.nav.skip)}</a>
+<header class="ptop">
+  <div class="wrap ptop__inner">
+    <a class="ptop__brand" href="${appBase}#/">${logo("sm")}<span class="ptop__label">${esc(p.meta.label)}</span></a>
+    <nav class="ptop__nav" id="portal-nav" aria-label="${esc(p.nav.label)}"></nav>
+    <a class="ptop__lang" data-portal-lang href="${otherApp}" hreflang="${t.otherLang.code}" lang="${t.otherLang.code}" aria-label="${esc(t.otherLang.aria)}">${esc(t.otherLang.label)}</a>
+  </div>
+</header>
+<main id="app" class="wrap pmain" tabindex="-1">
+<noscript><p class="notice">${esc(p.meta.noscript)}</p></noscript>
+</main>
+<div id="portal-live" class="toast" role="status" aria-live="polite"></div>
+<footer class="pfoot">
+  <div class="wrap pfoot__inner">
+    <span>© ${site.year} xSim</span>
+    <a href="mailto:${esc(site.contactEmail)}" dir="ltr">${esc(site.contactEmail)}</a>
+    <a href="${base(t)}privacy/">${esc(t.footer.privacy)}</a>
+    <a href="${base(t)}">xsim.dev</a>
+  </div>
+</footer>
+</body>
+</html>
+`;
+}
