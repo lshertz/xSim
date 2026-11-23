@@ -1,6 +1,8 @@
 // HTML templates for xsim.dev. All copy lives in src/content/<lang>.json.
 // Every value is HTML-escaped unless passed through raw().
 
+import { ICONS } from "./icons.mjs";
+
 export const esc = (s) =>
   String(s ?? "")
     .replace(/&/g, "&amp;")
@@ -28,43 +30,77 @@ function pageNote(color) {
   return `<img class="page-note" src="/assets/img/logo/note-${color}-240.webp" srcset="/assets/img/logo/note-${color}-240.webp 240w, /assets/img/logo/note-${color}-480.webp 480w" sizes="140px" width="140" height="140" alt="" aria-hidden="true">`;
 }
 
-function capabilityDiagram(t) {
-  const items = t.capabilities.items;
-  const cx = 240, cy = 240, r = 168;
+// Hero diagram: the capability architecture. The six capabilities build Execution, and
+// Execution builds business performance. Labels come from t.hero.diagram; icons from src/icons.mjs.
+function architectureDiagram(t) {
+  const d = t.hero.diagram;
   const rtl = t.dir === "rtl";
-  const nodes = items.map((it, i) => {
-    const a = (-90 + i * 60) * (Math.PI / 180);
-    return { ...it, x: cx + r * Math.cos(a), y: cy + r * Math.sin(a), a };
-  });
-  const ring = nodes
-    .map((n, i) => {
-      const m = nodes[(i + 1) % nodes.length];
-      // One link drawn as broken: information decay.
-      const cls = i === 1 ? "dg-link dg-link--broken" : "dg-link";
-      return `<line class="${cls}" x1="${n.x.toFixed(1)}" y1="${n.y.toFixed(1)}" x2="${m.x.toFixed(1)}" y2="${m.y.toFixed(1)}" />`;
-    })
-    .join("");
-  const spokes = nodes
-    .map((n) => `<line class="dg-spoke" x1="${cx}" y1="${cy}" x2="${n.x.toFixed(1)}" y2="${n.y.toFixed(1)}" />`)
-    .join("");
-  const dots = nodes
-    .map((n) => {
-      const lx = cx + (r + 36) * Math.cos(n.a);
-      const ly = cy + (r + 36) * Math.sin(n.a);
-      const cos = Math.cos(n.a);
-      let anchor = Math.abs(cos) < 0.2 ? "middle" : cos > 0 ? "start" : "end";
-      // With direction="rtl", SVG start/end are mirrored; swap so labels sit outside the ring.
-      if (rtl && anchor !== "middle") anchor = anchor === "start" ? "end" : "start";
-      const dy = Math.sin(n.a) < -0.5 ? -4 : Math.sin(n.a) > 0.5 ? 14 : 5;
-      return `<g class="dg-node"><circle cx="${n.x.toFixed(1)}" cy="${n.y.toFixed(1)}" r="22" /><text class="dg-num" x="${n.x.toFixed(1)}" y="${(n.y + 5).toFixed(1)}" text-anchor="middle">${esc(n.n)}</text><text class="dg-label" x="${lx.toFixed(1)}" y="${(ly + dy).toFixed(1)}" text-anchor="${anchor}"${rtl ? ' direction="rtl"' : ""}>${esc(n.k)}</text></g>`;
-    })
-    .join("");
-  return `<svg class="hero__diagram" viewBox="-70 0 620 480" role="img" aria-labelledby="dg-title">
-<title id="dg-title">${esc(t.hero.diagramTitle)}</title>
-<circle class="dg-orbit" cx="${cx}" cy="${cy}" r="${r}" />
-${spokes}${ring}
-<g class="dg-core"><circle cx="${cx}" cy="${cy}" r="58" /><text x="${cx}" y="${cy + 5}" text-anchor="middle">${esc(t.hero.diagramCenter)}</text></g>
-${dots}
+  const dirAttr = rtl ? ' direction="rtl"' : "";
+  const icon = (name, x, y, size = 24) =>
+    `<svg class="arch-icon" x="${x}" y="${y}" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name]}</svg>`;
+  // A box with an icon and up to two centred-vertically lines of text.
+  const box = (cls, name, x, y, w, h, lines) => {
+    const ix = rtl ? x + w - 14 - 22 : x + 14;
+    const tx = rtl ? x + w - 44 : x + 44;
+    const lh = 18;
+    const y0 = y + h / 2 - ((lines.length - 1) * lh) / 2 + 5;
+    const text = lines
+      .map((l, i) => `<text class="arch-label" x="${tx}" y="${y0 + i * lh}" text-anchor="start"${dirAttr}>${esc(l)}</text>`)
+      .join("");
+    return `<g class="arch-box ${cls}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="10" />${icon(name, ix, y + h / 2 - 11, 22)}${text}</g>`;
+  };
+  const arrow = (x1, y1, x2, y2) => `<line class="arch-line" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-end="url(#arch-arrow)" />`;
+  const line = (x1, y1, x2, y2) => `<line class="arch-line" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" />`;
+
+  // Geometry (viewBox 520 x 532). Columns mirror in RTL by reversing each row.
+  const r1x = [0, 178, 356], r1w = 164, r1y = 234, r1h = 74;
+  const r2x = [50, 270], r2w = 200, r2y = 342, r2h = 74;
+  const order = (arr) => (rtl ? [...arr].reverse() : arr);
+  const r1 = order([["information", "arch-box--blue"], ["decision", "arch-box--green"], ["adapt", "arch-box--pink"]]);
+  const r1t = order(d.row1);
+  const r2 = order([["align", "arch-box--orange"], ["lead", "arch-box--blue"]]);
+  const r2t = order(d.row2);
+  const c1 = r1x.map((x) => x + r1w / 2);
+  const c2 = r2x.map((x) => x + r2w / 2);
+
+  // Performance pill
+  const px = 120, py = 8, pw = 280, ph = 48;
+  const pix = rtl ? px + pw - 22 - 24 : px + 22;
+  const ptx = rtl ? px + pw - 58 : px + 58;
+  const perf = `<g class="arch-perf"><rect x="${px}" y="${py}" width="${pw}" height="${ph}" rx="24" />${icon("performance", pix, py + 12)}<text class="arch-perf__label" x="${ptx}" y="${py + 30}" text-anchor="start"${dirAttr}>${esc(d.performance[0])}</text></g>`;
+
+  // Execution box
+  const ex = 120, ey = 92, ew = 280, eh = 104;
+  const eix = rtl ? ex + ew - 18 - 26 : ex + 18;
+  const etx = rtl ? ex + ew - 60 : ex + 60;
+  const exec = `<g class="arch-box arch-box--yellow"><rect x="${ex}" y="${ey}" width="${ew}" height="${eh}" rx="10" />${icon("execution", eix, ey + 18, 26)}<text class="arch-exec__title" x="${etx}" y="${ey + 36}" text-anchor="start"${dirAttr}>${esc(d.execution.title)}</text>${d.execution.lines
+    .map((l, i) => `<text class="arch-exec__line" x="${etx}" y="${ey + 59 + i * 17}" text-anchor="start"${dirAttr}>${esc(l)}</text>`)
+    .join("")}</g>`;
+
+  const cust = box("arch-box--green", "customer", 130, 452, 260, 74, d.customer);
+
+  const connectors = [
+    arrow(260, ey, 260, py + ph + 4), // Execution up to performance
+    line(260, ey + eh, 260, 214),
+    line(c1[0], 214, c1[2], 214),
+    ...c1.map((c) => arrow(c, 214, c, r1y - 3)),
+    ...c1.map((c) => line(c, r1y + r1h, c, 324)),
+    line(c1[0], 324, c1[2], 324),
+    ...c2.map((c) => arrow(c, 324, c, r2y - 3)),
+    ...c2.map((c) => line(c, r2y + r2h, c, 432)),
+    line(c2[0], 432, c2[1], 432),
+    arrow(260, 432, 260, 452 - 3),
+  ].join("");
+
+  return `<svg class="hero__diagram arch" viewBox="0 0 520 532" role="img" aria-labelledby="arch-title">
+<title id="arch-title">${esc(d.title)}</title>
+<defs><marker id="arch-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="arch-arrowhead" /></marker></defs>
+${connectors}
+${perf}
+${exec}
+${r1.map(([n, cls], i) => box(cls, n, r1x[i], r1y, r1w, r1h, r1t[i])).join("")}
+${r2.map(([n, cls], i) => box(cls, n, r2x[i], r2y, r2w, r2h, r2t[i])).join("")}
+${cust}
 </svg>`;
 }
 
@@ -169,7 +205,7 @@ export function home(t, site) {
       </div>
       <p class="hero__note">${esc(t.hero.note)}</p>
     </div>
-    <div class="hero__visual">${capabilityDiagram(t)}</div>
+    <div class="hero__visual">${architectureDiagram(t)}</div>
   </div>
 </section>
 
@@ -276,22 +312,13 @@ export function home(t, site) {
       <p class="eyebrow eyebrow--light">${esc(t.operators.eyebrow)}</p>
       <h2 id="ops-title">${esc(t.operators.title)}</h2>
       <div class="prose prose--light"><p>${esc(t.operators.body)}</p><p>${esc(t.operators.closing)}</p><p class="ops__lang">${esc(t.operators.bilingual)}</p></div>
+      <p class="ops__team"><a class="btn btn--note" href="${base(t)}team/">${esc(t.operators.teamLink)} <span aria-hidden="true">${t.dir === "rtl" ? "&larr;" : "&rarr;"}</span></a></p>
     </div>
     <div class="stat">
       <p class="stat__n">${esc(t.operators.stat)}</p>
       <p class="stat__label">${esc(t.operators.statLabel)}</p>
       <p class="stat__text">${esc(t.operators.statText)}</p>
     </div>
-  </div>
-</section>
-
-<section class="section section--tight" aria-labelledby="trust-title">
-  <div class="wrap split">
-    <div>
-      <p class="eyebrow">${esc(t.trust.eyebrow)}</p>
-      <h2 id="trust-title">${esc(t.trust.title)}</h2>
-    </div>
-    <ul class="checks">${t.trust.points.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>
   </div>
 </section>
 
@@ -394,6 +421,20 @@ export function notFound(t, site) {
     path: base(t) + "404",
     title: t.notFound.title,
     body: `${pageNote("pink")}<h1>${esc(t.notFound.title)}</h1><p class="lead">${esc(t.notFound.body)}</p><p><a class="btn btn--ghost" href="${base(t)}">${esc(t.notFound.back)}</a></p>`,
+  });
+}
+
+export function team(t, site) {
+  const people = t.team.people
+    .map(
+      (p) => `<article class="person"><h2 class="person__name">${esc(p.name)}</h2><p class="person__role">${esc(p.role)}</p><p class="person__bio">${esc(p.bio)}</p></article>`
+    )
+    .join("");
+  return simple(t, site, {
+    path: base(t) + "team/",
+    title: t.team.title.replace(/\.$/, ""),
+    noindex: false,
+    body: `<p class="eyebrow">${esc(t.operators.eyebrow)}</p><h1>${esc(t.team.title)}</h1><p class="lead">${esc(t.team.intro)}</p><div class="people">${people}</div><p class="team__actions"><a class="btn btn--primary" href="${base(t)}#contact">${esc(t.team.cta)}</a> <a class="btn btn--ghost" href="${base(t)}">${esc(t.team.back)}</a></p>`,
   });
 }
 

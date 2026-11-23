@@ -4,7 +4,7 @@ Read this first before any work on the xsim.dev site, and keep it as the project
 
 ## What this is
 
-B2B marketing and lead-generation site for **xSim**, simulation-based executive development (the venture previously called EDGE / EDGE Team Dynamics). Market: Israel-based companies and Israeli-led leadership teams. Founders: Jeremy Stein and Larry Shertz. Founders are deliberately **not named** on the site yet.
+B2B marketing and lead-generation site for **xSim**, simulation-based executive development (the venture previously called EDGE / EDGE Team Dynamics). Market: Israel-based companies and Israeli-led leadership teams. Founders: Jeremy Stein (simulation architect and lead facilitator) and Larry Shertz (go-to-market and commercial strategy). Both are named on the site, with very short bios on `/team/` and `/he/team/`, linked from the Why xSim section.
 
 **Goal of the site:** give senior buyers (CEO, CHRO/VP HR, Chief of Staff) high-quality, high-level information, then convert them into a **briefing request**: a sales meeting where the client pitch deck is presented. The site is not the pitch itself.
 
@@ -57,6 +57,10 @@ A gated section for running the assessment survey with each customer. Everything
 - No pricing on the site. Pricing is discussed in the sales meeting.
 - Engagement model on the site: **Calibrate → Simulate → Integrate**. The CEO discovery interview (60 to 90 min) and the Executive Team Pulse (confidential survey) are **required** parts of Calibrate once a client is engaged. The Simulation Summit is half-day or full-day.
 - Six capabilities (from the xSim Curriculum Overview): Information, Decision, Adapt, Align, Lead, Customer, with **Execute** as the thread through all six.
+- Site copy follows the current client pitch deck (`SharedGDriveMirror/Sales/xSim_Pitch_Deck_v3.4.pptx` as of Nov 2026) where they overlap, for example "Reality-based" and the Summit closing with a 90-day roadmap and check-ins.
+- The "Inside a simulation" section presents a few examples from the simulation library, selected per engagement from the Calibration findings, without stating the size of the library.
+- There is no separate confidentiality section; the FAQ answer on individual evaluation covers it.
+- The FAQ on who takes part names the executive leadership team first and extends to any management team that makes decisions together (CRO, CMO, CCO, CPO, CHRO, CTO teams).
 - Lead form fields: name, work email, company, role, team size, preferred meeting language, phone, message, consent. Honeypot + Turnstile + server-side validation.
 
 ## Visual identity
@@ -65,7 +69,8 @@ A gated section for running the assessment survey with each customer. Everything
 - **Where it is used:** header and footer (yellow), favicon and apple-touch icon (yellow), social preview images (yellow on navy), utility pages use the variants (thank-you green, error orange, 404 pink).
 - **Palette:** ink `#0B1A36` (matches the logo's navy; also used for labels, bullets, numbers and links on light backgrounds), paper `#F5F2EB`, paper-2 `#ECE7DC`, slate `#4F5A6A`, and the note colors yellow `#FCE742`, blue `#9AD5FC`, green `#C3ED86`, orange `#FCA75A`, pink `#FC99C4` for accents (eyebrow dashes, phase tabs, simulation chips, the Execute tag, the brush underline under the hero title; yellow replaces any accent text on navy sections). No extra accent color beyond navy and the logo's note colors. Primary buttons are navy with white text; the form's submit button is note yellow with navy text.
 - **Type:** IBM Plex Sans + IBM Plex Sans Hebrew (self-hosted, SIL OFL), IBM Plex Mono for small labels.
-- Hero visual is the six-capability diagram (navy, yellow EXECUTE label). A sticky-note collage in the hero does not fit the corporate B2B tone; keep the notes to the logo and small accents.
+- Hero visual is the capability architecture diagram (`architectureDiagram` in `src/templates.mjs`): Business performance at the top, fed by Execution (accountability, ownership, follow-through), fed by Information flow, Decisions under constraints and Adaptability & response, then Cross-functional alignment and Leadership & delegation, with Customer-centric value creation at the base. The arrows are part of the story and stay. Boxes use light tints of the note colors; icons are Lucide line icons (ISC license, `src/icons.mjs`), matching the outline icon style of the pitch deck. Labels are bilingual in `hero.diagram` in the content files. An older xSim wordmark seen in some reference graphics is outdated and must not be used.
+- A sticky-note collage in the hero does not fit the corporate B2B tone; keep the notes to the logo and small accents.
 
 ## House style rules (carry over from the pitch deck work)
 
@@ -82,14 +87,13 @@ A gated section for running the assessment survey with each customer. Everything
 
 1. Native review of all Hebrew copy (`src/content/he.json`).
 2. Confirm the Integrate deliverables shown on the site: CEO report and 90-day check-ins.
-3. Confirm it is fine to name four simulations publicly (The $100M Decision, Customer Rescue, Blind Builder, The Perfect Meeting).
-4. Privacy policy is a draft: the 24-month retention period is a placeholder and the whole page needs legal review against the Israeli Privacy Protection Law.
-5. Lead notifications go to larry@shertz.com and jdstein7@gmail.com (both must be verified Email Routing destinations). Still open: who answers hello@xsim.dev.
-6. Logo now in use (Oct 2026); confirm the accent palette built around it.
-7. Possible later additions: booking link (e.g. Cal.com) on the thank-you page, case studies after the alpha pilots.
-8. Portal: native review of the Hebrew interface strings (`src/content/portal/he.json`) and of the Hebrew Pulse template text.
-9. Portal: decide when to switch on email (Workers Paid plan, or another provider); see DEPLOY.md, "Portal email".
-10. Portal: the privacy policy does not yet cover portal accounts and survey answers (what is stored, who sees it, retention). Needs adding before the first customer uses it.
+3. Privacy policy is a draft: the 24-month retention period is a placeholder and the whole page needs legal review against the Israeli Privacy Protection Law.
+4. Lead notifications go to larry@shertz.com and jdstein7@gmail.com (both must be verified Email Routing destinations). Still open: who answers hello@xsim.dev.
+5. Logo now in use (Oct 2026); confirm the accent palette built around it.
+6. Possible later additions: booking link (e.g. Cal.com) on the thank-you page, case studies after the alpha pilots.
+7. Portal: native review of the Hebrew interface strings (`src/content/portal/he.json`) and of the Hebrew Pulse template text.
+8. Portal: decide when to switch on email (Workers Paid plan, or another provider); see DEPLOY.md, "Portal email".
+9. Portal: the privacy policy does not yet cover portal accounts and survey answers (what is stored, who sees it, retention). Needs adding before the first customer uses it.
 
 ## File map
 
@@ -97,7 +101,8 @@ A gated section for running the assessment survey with each customer. Everything
 src/content/site.json   domain, contact email, Turnstile site key
 src/content/en.json     all English copy
 src/content/he.json     all Hebrew copy
-src/templates.mjs       page HTML
+src/templates.mjs       page HTML (home, team, privacy, utility pages, portal shell)
+src/icons.mjs           Lucide line icons used in the hero diagram
 src/worker.js           POST /api/lead (Turnstile, D1, email); routes /api/app/* to the portal
 src/turnstile.js        Turnstile verification shared by the form and the portal sign-in
 src/portal/             portal API: index.js (router, CSRF), auth.js (sign-in, 2FA, sessions),
@@ -113,4 +118,4 @@ wrangler.jsonc          Cloudflare config (routes, D1, email, vars)
 DEPLOY.md               setup, GitHub → Cloudflare workflow
 ```
 
-Source material lives in the ExecutiveTraining folder: `SharedGDriveMirror/Simulations/xSim Curiculum Overview.docx`, `SharedGDriveMirror/JDS Misc/xSim Survey Discussion and Business Offering.docx`, `SharedGDriveMirror/Sales/EDGE_Client_Pitch_Deck_Draft4.pptx`, and the facilitator kits.
+Source material lives in the shared folder (Google Drive `CosultingProjects/xSim (Shared Folder)`, mirrored to `SharedGDriveMirror` in the ExecutiveTraining folder): the current pitch deck in `Sales/`, the curriculum overview and facilitator kits in `Simulations/Vetted/`, the CEO interview guide and Pulse material in `JDS Misc/`, website review notes in `website/`. Bios come from Jeremy's CV (`reference docs/JeremySteinCV.pdf`) and Larry's stated career history.

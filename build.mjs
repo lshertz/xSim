@@ -3,7 +3,7 @@
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { createHash } from "node:crypto";
-import { home, thanks, contactError, notFound, privacy, portal } from "./src/templates.mjs";
+import { home, thanks, contactError, notFound, privacy, team, portal } from "./src/templates.mjs";
 
 const OUT = "public";
 const read = (p) => JSON.parse(readFileSync(p, "utf8"));
@@ -44,12 +44,13 @@ for (const [code, t] of Object.entries(langs)) {
   write(`${prefix}thanks/index.html`, thanks(t, site));
   write(`${prefix}contact-error/index.html`, contactError(t, site));
   write(`${prefix}privacy/index.html`, privacy(t, site));
+  write(`${prefix}team/index.html`, team(t, site));
   write(`${prefix}404.html`, notFound(t, site));
   write(`${prefix}app/index.html`, portal(t, portalStrings[code], site));
 }
 
 // Sitemap
-const urls = ["/", "/he/", "/privacy/", "/he/privacy/"];
+const urls = ["/", "/he/", "/team/", "/he/team/", "/privacy/", "/he/privacy/"];
 write(
   "sitemap.xml",
   `<?xml version="1.0" encoding="UTF-8"?>

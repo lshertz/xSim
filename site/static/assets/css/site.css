@@ -90,7 +90,7 @@ p:last-child { margin-bottom: 0; }
 }
 .eyebrow::before { content: ""; width: 28px; height: 3px; background: var(--note-yellow); flex: none; }
 .eyebrow--light { color: var(--signal-bright); }
-:lang(he) .eyebrow { font-family: var(--font); letter-spacing: 0.04em; font-size: 0.9rem; }
+:lang(he) .eyebrow { text-transform: none; font-family: var(--font); letter-spacing: 0.04em; font-size: 0.9rem; }
 
 /* ---------- Buttons ---------- */
 .btn {
@@ -178,6 +178,23 @@ p:last-child { margin-bottom: 0; }
 .hero__note::before { content: ""; width: 8px; height: 8px; background: var(--signal); border-radius: 50%; flex: none; }
 .hero__visual { min-width: 0; }
 .hero__diagram { width: 100%; height: auto; max-width: 520px; margin-inline: auto; overflow: visible; }
+/* Hero: capability architecture diagram */
+.arch-line { stroke: var(--ink); stroke-width: 1.6; fill: none; }
+.arch-arrowhead { fill: var(--ink); }
+.arch-perf rect { fill: var(--ink); }
+.arch-perf .arch-icon { color: var(--note-yellow); }
+.arch-perf__label { font-family: var(--font); font-size: 17px; font-weight: 600; fill: #fff; letter-spacing: 0.01em; }
+.arch-box rect { fill: var(--box, var(--surface)); }
+.arch-box .arch-icon { color: var(--ink); }
+.arch-box--yellow { --box: var(--note-yellow); }
+.arch-box--blue { --box: #C9E8FD; }
+.arch-box--green { --box: #DDF5BA; }
+.arch-box--pink { --box: #FDD0E3; }
+.arch-box--orange { --box: #FDD3AC; }
+.arch-label { font-family: var(--font); font-size: 16px; font-weight: 600; fill: var(--ink); }
+.arch-exec__title { font-family: var(--font); font-size: 17px; font-weight: 600; fill: var(--ink); }
+.arch-exec__line { font-family: var(--font); font-size: 14.5px; font-weight: 500; fill: var(--ink); }
+
 .brush { display: block; width: min(320px, 70%); height: auto; margin-top: 10px; overflow: visible; }
 .brush path { fill: none; stroke: var(--note-yellow); stroke-width: 9; stroke-linecap: round; }
 .brush .brush__thin { stroke-width: 3; opacity: .8; }
@@ -189,16 +206,6 @@ p:last-child { margin-bottom: 0; }
   .hero__grid { grid-template-columns: minmax(0, 1fr); }
   .hero__visual { max-width: 440px; width: 100%; margin-inline: auto; }
 }
-.dg-orbit { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 2 6; }
-.dg-spoke { stroke: var(--line); stroke-width: 1; }
-.dg-link { stroke: var(--ink); stroke-width: 1.5; }
-.dg-link--broken { stroke: var(--muted); stroke-dasharray: 6 7; stroke-width: 1.5; }
-.dg-node circle { fill: var(--surface); stroke: var(--ink); stroke-width: 1.5; }
-.dg-num { font-family: var(--mono); font-size: 14px; font-weight: 500; fill: var(--ink); }
-.dg-label { font-family: var(--font); font-size: 18px; font-weight: 500; fill: var(--muted); }
-.dg-core circle { fill: var(--ink); }
-.dg-core text { font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.14em; fill: var(--note-yellow); }
-:lang(he) .dg-core text { font-family: var(--font); letter-spacing: 0; font-size: 15px; }
 
 /* ---------- Strategy / Tactics / Execution ---------- */
 .ste { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
@@ -294,16 +301,21 @@ p:last-child { margin-bottom: 0; }
 .stat__label { font-size: 1.2rem; font-weight: 500; color: var(--signal-bright); margin-bottom: 18px; }
 .stat__text { color: var(--on-ink-muted); }
 .ops__lang { font-weight: 500; color: var(--on-ink) !important; }
+/* Founders link and team page */
+.ops__team { margin-top: 28px; }
+.people { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 36px 0 40px; }
+@media (max-width: 720px) { .people { grid-template-columns: minmax(0, 1fr); } }
+.person { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 28px 30px; position: relative; }
+.person::before { content: ""; position: absolute; top: -10px; inset-inline-start: 24px; width: 64px; height: 20px; background: var(--note-yellow); transform: rotate(-3deg); box-shadow: 0 2px 4px rgba(11, 26, 54, 0.12); }
+.person + .person::before { background: var(--note-blue); }
+.person__name { font-size: 1.45rem; margin: 6px 0 4px; }
+.person__role { color: var(--muted); font-weight: 500; margin-bottom: 14px; }
+.person__bio { color: #2C3646; }
+.team__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
 
 /* ---------- Trust ---------- */
-.checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
-.checks li { padding: 18px 0 18px; padding-inline-start: 36px; border-bottom: 1px solid var(--line); position: relative; font-size: 1.08rem; }
-.checks li::before {
-  content: ""; position: absolute; inset-inline-start: 4px; top: 25px; width: 14px; height: 7px;
-  border-inline-start: 2px solid var(--signal); border-bottom: 2px solid var(--signal); transform: rotate(-45deg);
-}
-[dir="rtl"] .checks li::before { transform: rotate(45deg) scaleX(-1); }
-
+[dir="rtl"] 
 /* ---------- Models ---------- */
 .models { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .model { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 28px; }
