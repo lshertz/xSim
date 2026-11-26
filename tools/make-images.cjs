@@ -22,7 +22,7 @@ const note = "data:image/webp;base64," + fs.readFileSync(path.join(__dirname, ".
 const mark = `<img class="note" src="${note}" alt="">`;
 const pages = {
   en: `<html lang="en"><style>${css}</style><body>${mark}<p></p><h1>See how your leadership team really operates. Then make it better.</h1><p>Simulation-based executive development</p><div class="bar"></div></body></html>`,
-  he: `<html lang="he" dir="rtl"><style>${css}</style><body>${mark}<p></p><h1>ראו איך צוות ההנהלה שלכם באמת עובד. ואז שפרו את זה.</h1><p>פיתוח הנהלות באמצעות סימולציות עסקיות</p><div class="bar"></div></body></html>`,
+  he: `<html lang="he" dir="rtl"><style>${css}</style><body>${mark}<p></p><h1>ראו איך צוות ההנהלה שלכם באמת עובד. ואז שפרו את זה.</h1><p>פיתוח בכירים מבוסס סימולציות</p><div class="bar"></div></body></html>`,
 };
 (async () => {
   const b = await chromium.launch();
